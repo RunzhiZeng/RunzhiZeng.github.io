@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="操作系统作业," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="任务目标 在Linux终端运行2个自己写的进程A和BA的运行逻辑为：执行一个无限循环，在屏幕上输出一特定不变的字符B的运行逻辑为：通过某种方式，侵入A进程的运行空间，修改A进程输出字符的内容  任务过程动手前的思考1.一个进程想要侵入其它的进程，毫无疑问，这个进程必须有root权限。2.B想要侵入A的进程空间，那么，显然B要先能够访问A的进程空间3.必须要知道所要修改内容的地址，否则无从更改。 综">
+<meta name="keywords" content="操作系统作业">
+<meta property="og:type" content="article">
+<meta property="og:title" content="进程内容修改小实例">
+<meta property="og:url" content="https://runzhizeng.github.io/2016/09/07/进程内存修改小实例/index.html">
+<meta property="og:site_name" content="润智的博客">
+<meta property="og:description" content="任务目标 在Linux终端运行2个自己写的进程A和BA的运行逻辑为：执行一个无限循环，在屏幕上输出一特定不变的字符B的运行逻辑为：通过某种方式，侵入A进程的运行空间，修改A进程输出字符的内容  任务过程动手前的思考1.一个进程想要侵入其它的进程，毫无疑问，这个进程必须有root权限。2.B想要侵入A的进程空间，那么，显然B要先能够访问A的进程空间3.必须要知道所要修改内容的地址，否则无从更改。 综">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-18T07:05:14.374Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="进程内容修改小实例">
+<meta name="twitter:description" content="任务目标 在Linux终端运行2个自己写的进程A和BA的运行逻辑为：执行一个无限循环，在屏幕上输出一特定不变的字符B的运行逻辑为：通过某种方式，侵入A进程的运行空间，修改A进程输出字符的内容  任务过程动手前的思考1.一个进程想要侵入其它的进程，毫无疑问，这个进程必须有root权限。2.B想要侵入A的进程空间，那么，显然B要先能够访问A的进程空间3.必须要知道所要修改内容的地址，否则无从更改。 综">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://runzhizeng.github.io/2016/09/07/进程内存修改小实例/"/>
+
+
+
+
+
+  <title>进程内容修改小实例 | 润智的博客</title>
+  
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/prism.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">润智的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于作者
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://runzhizeng.github.io/2016/09/07/进程内存修改小实例/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="润智">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="润智的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">进程内容修改小实例</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-07T00:00:00+08:00">
+                2016-09-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="任务目标"><a href="#任务目标" class="headerlink" title="任务目标"></a>任务目标</h2><blockquote>
+<p>在Linux终端运行2个自己写的进程A和B<br>A的运行逻辑为：执行一个无限循环，在屏幕上输出一特定不变的字符<br>B的运行逻辑为：通过某种方式，侵入A进程的运行空间，修改A进程输出字符的内容</p>
+</blockquote>
+<h2 id="任务过程"><a href="#任务过程" class="headerlink" title="任务过程"></a>任务过程</h2><h3 id="动手前的思考"><a href="#动手前的思考" class="headerlink" title="动手前的思考"></a>动手前的思考</h3><p>1.一个进程想要侵入其它的进程，毫无疑问，<strong>这个进程必须有root权限</strong>。<br>2.B想要侵入A的进程空间，那么，<strong>显然B要先能够访问A的进程空间</strong><br>3.必须要知道所要<strong>修改内容的地址</strong>，否则无从更改。</p>
+<p>综上三点，通过查阅资料，作出以下的解决方案:<br>1.一个<strong>su</strong>命令搞定<br>2.使用<strong>ptrace</strong>调用来实现进程内存的读写访问（其实这个调用还有巨多功能)。<br>3.使用<strong>nm</strong>命令查看obj文件各段内容的地址（偏移地址）</p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>首先，编写如下代码<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//p1.cpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="keyword">char</span> c = <span class="string">'p'</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(<span class="literal">true</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		sleep(<span class="number">1</span>);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%c\n"</span>,c);</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这个程序所要做的事很显然：每隔一秒输出一次字符’p’.<br>编译，链接：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># g++ -o p1 p1.cpp</span><br></pre></td></tr></table></figure></p>
+<p>此时，通过如下命令查看全局变量c偏移地址:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># nm ./p1</span><br></pre></td></tr></table></figure></p>
+<p>得到如下输出:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">0000000000601040 B __bss_start</span><br><span class="line">000000000060103c D c</span><br><span class="line">0000000000601040 b completed.6337</span><br><span class="line">0000000000601038 D __data_start</span><br><span class="line">0000000000601038 W data_start</span><br><span class="line">....</span><br></pre></td></tr></table></figure></p>
+<p>可知，c的偏移地址为0x000000000060103c</p>
+<p>现再编写如下程序:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//p2.cpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/ptrace.h&gt; // for ptrace</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/wait.h&gt;  //for wait</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> c = <span class="string">'t'</span>;  <span class="comment">//把输出修改为't'</span></span><br><span class="line">	<span class="keyword">int</span> ret = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> status = <span class="number">0</span>;;</span><br><span class="line">	<span class="keyword">long</span> data = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">long</span> addr = <span class="number">0x000000000060103c</span>;  <span class="comment">//p1的变量c的偏移地址</span></span><br><span class="line">	<span class="keyword">pid_t</span> apid = atoi(argv[<span class="number">1</span>]);	<span class="comment">//从参数中获得pid</span></span><br><span class="line">	</span><br><span class="line">	ptrace(PTRACE_ATTACH, apid, <span class="number">0</span>, <span class="number">0</span>); <span class="comment">//把此进程attach上进程号为apid的进程，从而对该进程进行进程内存访问</span></span><br><span class="line">	wait(&amp;status);  </span><br><span class="line"></span><br><span class="line">	ptrace(PTRACE_POKEDATA, apid, addr, c); <span class="comment">//对addr的偏移地址内容修改为c</span></span><br><span class="line">	</span><br><span class="line">	ptrace(PTRACE_CONT, apid, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">	ptrace(PTRACE_DETACH, apid, <span class="literal">NULL</span>, <span class="literal">NULL</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>编译，链接:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ -o p2 p2.cpp</span><br></pre></td></tr></table></figure></p>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><blockquote>
+<p>1.在程序p1.cpp中，printf里千万不要忽略’\n’字符，因为如果没有它，printf输出的内容会缓存到内存里而不会输出到终端上.</p>
+<p>2.本程序在x86_64下可以运行，但是其它系统没做过测试！</p>
+</blockquote>
+<h2 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h2><p>运行的时候，需要开两个终端，一个运行p1,另一个要先root然后再运行p2<br>运行p1的终端进入到相应目录后，输入:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./p1 &amp;</span><br></pre></td></tr></table></figure></p>
+<p>此时终端会显示p1的进程号，然后再不断输出字符’p’.假设我们看到的进程号是%pid%</p>
+<p>在运行p2的终端运行root后，同样进入相应目录，输入:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./p2 %pid%</span><br></pre></td></tr></table></figure></p>
+<p>然后就可以看到，p1的那个终端输出的字符变化为’t’了。</p>
+<h2 id="实验小结"><a href="#实验小结" class="headerlink" title="实验小结"></a>实验小结</h2><ol>
+<li>完成了修改进程所输出字符</li>
+<li>很遗憾，如果把char c = ‘p’放到代码段里(main里），就难以寻找c的位置。所以本人选择把c作为全局变量方便寻找。</li>
+</ol>
+<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><blockquote>
+<p>为什么进程B可以破坏进程之间的隔离性，从而修改进程A的运行数据？<br>为什么需要进程通信？进程通信和进程隔离性之间如何做到较好的平衡？</p>
+</blockquote>
+<ol>
+<li>进程间的运行数据并非完全隔离，进程之间也存在数据的交换。比如某个父进程需要实时的读取子进程的数据以确定子进程的运行状态。</li>
+<li>通信和隔离应做到：在隔离基础上进行通信，因为安全性是第一位的。然后在适地放宽通信的限制。</li>
+</ol>
+<h2 id="更多思考"><a href="#更多思考" class="headerlink" title="更多思考"></a>更多思考</h2><p>很显然，其实这样的程序并没有多大意思，它通过了nm命令对要修改的内容进行定位。实际上，我们要修改的数据很可能并非是全局变量，还可能是临时变量！如此的话，nm命令就没法用了。那么如何进行内存数据的定位呢？</p>
+<p>本人曾遇到过一个叫金山游侠的外挂。它的原理是多次在目标进程的整个进程空间内搜索目标数据。比如说我现在的血是100，我想要修改血量，可以先搜100，得到一大堆地址，然后故意扣2点血变成98，然后搜索98，一次推类，直至搜到只剩下一个地址，那么这个地址很有可能就是储存血量数据的地址。</p>
+<p>这样的话，搜索进程中的目标数据就可以使用这样的方法:修改进程对目标进程进行attach之后，多次搜索其内存空间，然后定位地址。当然这都还未实现，暂时不知道这样做是否可行。（无论怎么样，我算是完成作业了哈哈）</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="http://linux.die.net/man/2/ptrace" target="_blank" rel="noopener">linux man ptrace</a><br><a href="http://pramode.net/articles/lfy/ptrace/pramode.html" target="_blank" rel="noopener">ptrace tricks</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/操作系统作业/" rel="tag"># 操作系统作业</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/05/05/CCA of RSA/" rel="next" title="对教科书式RSA的CCA攻击">
+                <i class="fa fa-chevron-left"></i> 对教科书式RSA的CCA攻击
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/11/Factoring,order-finding/" rel="prev" title="Order finding与大整数分解">
+                Order finding与大整数分解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="润智" />
+            
+              <p class="site-author-name" itemprop="name">润智</p>
+              <p class="site-description motion-element" itemprop="description">没有个性</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://forum.turingclass.org" title="图灵论坛" target="_blank">图灵论坛</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.jianshu.com/u/f8c9e6c93c72" title="斌头老师的简书博客" target="_blank">斌头老师的简书博客</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#任务目标"><span class="nav-number">1.</span> <span class="nav-text">任务目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#任务过程"><span class="nav-number">2.</span> <span class="nav-text">任务过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#动手前的思考"><span class="nav-number">2.1.</span> <span class="nav-text">动手前的思考</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现"><span class="nav-number">2.2.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项"><span class="nav-number">2.3.</span> <span class="nav-text">注意事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验结果"><span class="nav-number">3.</span> <span class="nav-text">实验结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验小结"><span class="nav-number">4.</span> <span class="nav-text">实验小结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思考"><span class="nav-number">5.</span> <span class="nav-text">思考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更多思考"><span class="nav-number">6.</span> <span class="nav-text">更多思考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">7.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">润智</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>

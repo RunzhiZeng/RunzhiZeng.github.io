@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="计算理论," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="​在直观解释 P v.s. NP问题 时，人们常常会这样类比“验证解是否寻找解一样简单？”。其实严格上讲，P v.s. NP问题与这个说法的联系并不直接，因为这个说法在一定程度上混淆了搜索问题(search problem)和判定性问题(decision problem)。有一定计算理论基础的人会知道，P v.s. NP问题是对判定性问题的复杂性区分（哪些问题有高效算法，哪些没有），而“寻找解和验">
+<meta name="keywords" content="计算理论">
+<meta property="og:type" content="article">
+<meta property="og:title" content="搜索问题与判定问题、P vs NP 与 PC vs PF">
+<meta property="og:url" content="https://runzhizeng.github.io/2018/04/17/hello-world/index.html">
+<meta property="og:site_name" content="润智的博客">
+<meta property="og:description" content="​在直观解释 P v.s. NP问题 时，人们常常会这样类比“验证解是否寻找解一样简单？”。其实严格上讲，P v.s. NP问题与这个说法的联系并不直接，因为这个说法在一定程度上混淆了搜索问题(search problem)和判定性问题(decision problem)。有一定计算理论基础的人会知道，P v.s. NP问题是对判定性问题的复杂性区分（哪些问题有高效算法，哪些没有），而“寻找解和验">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-17T13:42:45.287Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="搜索问题与判定问题、P vs NP 与 PC vs PF">
+<meta name="twitter:description" content="​在直观解释 P v.s. NP问题 时，人们常常会这样类比“验证解是否寻找解一样简单？”。其实严格上讲，P v.s. NP问题与这个说法的联系并不直接，因为这个说法在一定程度上混淆了搜索问题(search problem)和判定性问题(decision problem)。有一定计算理论基础的人会知道，P v.s. NP问题是对判定性问题的复杂性区分（哪些问题有高效算法，哪些没有），而“寻找解和验">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://runzhizeng.github.io/2018/04/17/hello-world/"/>
+
+
+
+
+
+  <title>搜索问题与判定问题、P vs NP 与 PC vs PF | 润智的博客</title>
+  
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/prism.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">润智的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于作者
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://runzhizeng.github.io/2018/04/17/hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="润智">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="润智的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">搜索问题与判定问题、P vs NP 与 PC vs PF</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-17T21:42:45+08:00">
+                2018-04-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>​在直观解释 P v.s. NP问题 时，人们常常会这样类比“验证解是否寻找解一样简单？”。其实严格上讲，P v.s. NP问题与这个说法的联系并不直接，因为这个说法在一定程度上混淆了搜索问题(search problem)和判定性问题(decision problem)。有一定计算理论基础的人会知道，P v.s. NP问题是对判定性问题的复杂性区分（哪些问题有高效算法，哪些没有），而“寻找解和验证解是否一样简单？”这其实是针对搜索性问题的复杂性区分。</p>
+<p>​本文尝试解释，为什么P v.s. NP问题可直观解释为“寻找解和验证解是否一样简单？”。首先要区分搜索问题和判定性问题。</p>
+<h3 id="搜索性问题与判定性问题"><a href="#搜索性问题与判定性问题" class="headerlink" title="搜索性问题与判定性问题"></a>搜索性问题与判定性问题</h3><p>​给定关系$R$，记$R(x)=\{y:(x,y)\in R\}$（$R(x)$有可能是空集）</p>
+<p>​<strong>搜索问题.</strong> $R$上的搜索问题为：给定$x$，寻找$y$使得$y\in R(x)$（或$(x,y)\in R$）。$x$常被称为<strong>问题实例</strong>。</p>
+<p><strong>判定问题.</strong> 设$S\subseteq \{0,1\}^*$，$S$上的判定性问题为：给定$x$，判定$x$是否属于$S$($x\in_?S$)。</p>
+<h3 id="两种问题的复杂性区分"><a href="#两种问题的复杂性区分" class="headerlink" title="两种问题的复杂性区分"></a>两种问题的复杂性区分</h3><p>​在描述搜索性问题的复杂性时还需要用到多项式界定关系这一概念：</p>
+<p>​<strong>多项式界定的关系(polynomially bounded relations)</strong>:若关系$R\subseteq \{0,1\}^<em> \times \{0,1\}^</em>$满足：存在多项式$p$，对所有的$(x,y)\in R$都有$|y| \le p(|x|)$，则称$R$是多项式界定的。</p>
+<blockquote>
+<p>​其中$|x|$指定对象$x$的描述长度，因为一般是用比特串描述对象，$|x|$指描述$x$所用的比特数。<br>（关于描述的复杂性：任何一个对象都有无穷多种描述，比如描述我你可用“高大威猛帅气….”这样的话，但也可以描述为“华南师范大学学号2014210<em>**</em>”。。。一般$|x|$指最短的能描述$x$的比特串的长度）</p>
+</blockquote>
+<h4 id="搜索性问题的复杂性区分"><a href="#搜索性问题的复杂性区分" class="headerlink" title="搜索性问题的复杂性区分"></a>搜索性问题的复杂性区分</h4><p>​设$R$是多项式界定关系。之所以需要$R$是多项式界定关系，是因为对于$R$上的搜索问题，如果算法找出的解$y$是指数大的，则该算法不可能是多项式时间算法，因此非多项式界的关系在此不考虑。</p>
+<p><strong>“可高效解”</strong></p>
+<p>​如果存在多项式时间算法$A$，对于任意的$x$，$A(x)\in R(x)$（即A找出了问题实例x的解，若$R(x)$是空集，则$A(x)$输出特殊符号$\perp$，即指出问题实例$x$无解），则$R$上的搜索问题是<strong>可高效解</strong>的。</p>
+<p>​所有的可高效解的多项式界定关系$R$（对应的搜索问题）构成一个集合，该集合称为<strong>复杂性类$\mathcal{PF}$</strong>(polynomial-time find)。</p>
+<p><strong>“可高效验证”</strong></p>
+<p>​如果存在多项式时间算法$A$，对于任意的$(x,y)$，$A(x,y)=1$当且仅当$(x,y)\in R$，则$R$上的搜索问题是<strong>可高效验证</strong>的。</p>
+<p>​所有的可高效验证的多项式界定关系$R$（对应的搜索问题）构成一个集合，该集合称为<strong>复杂性类$\mathcal{PC}$</strong>(polynomial-time check)。</p>
+<p><strong>$\mathcal{PC}$与$\mathcal{PF}$的关系</strong></p>
+<p>​由前面的定义，不难看出，$\mathcal{PC}$指那一类可高效验证解的问题（比如素数搜索问题，我们可以轻易地寻找判定一个数是不是素数），而$\mathcal{PF}$指那一类可高效求解的问题（还是素数搜索问题，我们可以轻易地寻找一个素数）。</p>
+<p>​首先，一个基本的事实是：$\mathcal{PF} - \mathcal{PC} \ne \varnothing$，即<strong>存在某些搜索问题，它可高效求解但不能高效验证</strong>。</p>
+<p>​但是，是否会有$\mathcal{PC} \subseteq \mathcal{PF}$呢？即，<strong>可高效验证的搜索问题是否是可高效求解</strong>？这实际上就是我们想问的：“寻找解是否比验证解要简单？”下图展现了这一关系：</p>
+<p>$\mathcal{PC} \subseteq \mathcal{PF}$和P v.s NP问题有什么关系呢？现开始介绍P与NP。</p>
+<h4 id="判定性问题的复杂性区分"><a href="#判定性问题的复杂性区分" class="headerlink" title="判定性问题的复杂性区分"></a>判定性问题的复杂性区分</h4>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/计算理论/" rel="tag"># 计算理论</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/11/Factoring,order-finding/" rel="next" title="Order finding与大整数分解">
+                <i class="fa fa-chevron-left"></i> Order finding与大整数分解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="润智" />
+            
+              <p class="site-author-name" itemprop="name">润智</p>
+              <p class="site-description motion-element" itemprop="description">没有个性</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://forum.turingclass.org" title="图灵论坛" target="_blank">图灵论坛</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.jianshu.com/u/f8c9e6c93c72" title="斌头老师的简书博客" target="_blank">斌头老师的简书博客</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#搜索性问题与判定性问题"><span class="nav-number">1.</span> <span class="nav-text">搜索性问题与判定性问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两种问题的复杂性区分"><span class="nav-number">2.</span> <span class="nav-text">两种问题的复杂性区分</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#搜索性问题的复杂性区分"><span class="nav-number">2.1.</span> <span class="nav-text">搜索性问题的复杂性区分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#判定性问题的复杂性区分"><span class="nav-number">2.2.</span> <span class="nav-text">判定性问题的复杂性区分</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">润智</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
