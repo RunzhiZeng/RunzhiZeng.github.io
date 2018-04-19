@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="密码学,算法," />
+  <meta name="keywords" content="日常生活," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="目标Programming assignment. You are given an oracle-access to a function dec(c) that inverts the RSA N,d function: on input c it computes m = c^d mod N for all but one ciphertext.  We call this cipherte">
-<meta name="keywords" content="密码学,算法">
+<meta name="description" content="今天进行了毕业答辩，我的本科毕业论文题目是:”公钥密码量子安全性的分析与证明”，指导老师是王立斌老师。而我的答辩老师按座位从左到右包括赵淦森老师、龚征老师、李宇辉老师、张奇支老师与王兴芳老师。 这次答辩有惊无险，当然说得更直接就是顺利完成了。我个人预估就是龚老师会提问的相对多一点，因为我的论文主题是密码学，当然实际情况也是如此。而最后老师们统一认为”相信王老师的把关质量“，然后我的答辩就结束了（到">
+<meta name="keywords" content="日常生活">
 <meta property="og:type" content="article">
-<meta property="og:title" content="对教科书式RSA的CCA攻击">
-<meta property="og:url" content="https://runzhizeng.github.io/2015/05/05/CCA of RSA/index.html">
+<meta property="og:title" content="本科毕业答辩">
+<meta property="og:url" content="https://runzhizeng.github.io/2018/04/19/毕业答辩/index.html">
 <meta property="og:site_name" content="润智的博客">
-<meta property="og:description" content="目标Programming assignment. You are given an oracle-access to a function dec(c) that inverts the RSA N,d function: on input c it computes m = c^d mod N for all but one ciphertext.  We call this cipherte">
+<meta property="og:description" content="今天进行了毕业答辩，我的本科毕业论文题目是:”公钥密码量子安全性的分析与证明”，指导老师是王立斌老师。而我的答辩老师按座位从左到右包括赵淦森老师、龚征老师、李宇辉老师、张奇支老师与王兴芳老师。 这次答辩有惊无险，当然说得更直接就是顺利完成了。我个人预估就是龚老师会提问的相对多一点，因为我的论文主题是密码学，当然实际情况也是如此。而最后老师们统一认为”相信王老师的把关质量“，然后我的答辩就结束了（到">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-18T06:47:58.185Z">
+<meta property="og:updated_time" content="2018-04-19T11:54:26.044Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="对教科书式RSA的CCA攻击">
-<meta name="twitter:description" content="目标Programming assignment. You are given an oracle-access to a function dec(c) that inverts the RSA N,d function: on input c it computes m = c^d mod N for all but one ciphertext.  We call this cipherte">
+<meta name="twitter:title" content="本科毕业答辩">
+<meta name="twitter:description" content="今天进行了毕业答辩，我的本科毕业论文题目是:”公钥密码量子安全性的分析与证明”，指导老师是王立斌老师。而我的答辩老师按座位从左到右包括赵淦森老师、龚征老师、李宇辉老师、张奇支老师与王兴芳老师。 这次答辩有惊无险，当然说得更直接就是顺利完成了。我个人预估就是龚老师会提问的相对多一点，因为我的论文主题是密码学，当然实际情况也是如此。而最后老师们统一认为”相信王老师的把关质量“，然后我的答辩就结束了（到">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://runzhizeng.github.io/2015/05/05/CCA of RSA/"/>
+  <link rel="canonical" href="https://runzhizeng.github.io/2018/04/19/毕业答辩/"/>
 
 
 
 
 
-  <title>对教科书式RSA的CCA攻击 | 润智的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>本科毕业答辩 | 润智的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://runzhizeng.github.io/2015/05/05/CCA of RSA/">
+    <link itemprop="mainEntityOfPage" href="https://runzhizeng.github.io/2018/04/19/毕业答辩/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="润智">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">对教科书式RSA的CCA攻击</h1>
+          <h1 class="post-title" itemprop="name headline">本科毕业答辩</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-05-05T00:00:00+08:00">
-                2015-05-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-19T00:00:00+08:00">
+                2018-04-19
               </time>
             
 
@@ -320,15 +320,33 @@
       
 
       
-        <h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p><strong>Programming assignment.</strong> You are given an oracle-access to a function dec(c) that inverts the RSA N,d function: on input c it computes m = c^d mod N for all but one ciphertext.  We call this ciphertext a challenge-ciphertext c∗. The parameters (N, e, d, c∗ ) are fixed. You’ll find all public parameters in the file ‘params.txt‘. Your task is to decrypt the challenge c*.</p>
-<p>任务简述:给定解密oracle $dec(\cdot)$，其可对$C^*$以外的所有密文进行解密操作($dec(C) = C^d \ mod \ N)$.现要求通过某种方法,求出$C^*$对应的明文$M^*$.($e,N$与目标密文$C^*$已给出).</p>
-<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><ol>
-<li>构造一个新的密文$C’= 2 \times C^* (mod \ N)$</li>
-<li>用$dec(\cdot)$求解$C’$对应的”明文”$M’( = 2^d \times (C^<em>)^d = 2^d M^\</em> \mod N)$.(实际上该明文可能不是良构的,没关系)</li>
-<li>用$dec(\cdot)$求解$2$对应的”明文” $t (= 2^d \ mod \ N)$.</li>
-<li>计算 $t^{-1} \ mod \ N$.</li>
-<li>计算 $M^* = M’ \times t^{-1} \ mod \ N$.得到$C^*$对应的明文$M^*$</li>
+        <p>今天进行了毕业答辩，我的本科毕业论文题目是:”公钥密码量子安全性的分析与证明”，指导老师是王立斌老师。而我的答辩老师按座位从左到右包括赵淦森老师、龚征老师、李宇辉老师、张奇支老师与王兴芳老师。</p>
+<p>这次答辩有惊无险，当然说得更直接就是顺利完成了。我个人预估就是龚老师会提问的相对多一点，因为我的论文主题是密码学，当然实际情况也是如此。而最后老师们统一认为”相信王老师的把关质量“，然后我的答辩就结束了（到这里其实我也是既开心又感觉奇怪）。所以某种意义上来讲，我的答辩还算成功。</p>
+<p>毕业答辩要怎么做呢？根据我和同学的交流和老师的批评（对，我一开始的答辩方式被指导老师狠狠批了一顿），我有如下的一些看法。不想看我吹水的，可以直接翻到后面看结论。</p>
+<h3 id="毕业答辩：展示工作（量）"><a href="#毕业答辩：展示工作（量）" class="headerlink" title="毕业答辩：展示工作（量）"></a>毕业答辩：展示工作（量）</h3><p>毕业答辩是每一个本科毕业生必须经历的一个关卡，学生在答辩中需要展示自己的毕业设计（论文）。不同的专业对自己学生毕业设计的要求目标不一样，但我个人猜测，毕业答辩也许就没有专业之分了：毕业答辩即，展示自己的工作（量）。</p>
+<p>展示自己工作是什么意思呢？其实大概就是：你要告诉大家，你为了完成毕业论文，<strong>你做了什么样的工作？你的工作量如何？</strong>其次才是你的论文实现了什么、达到了什么样的目标（成果）等等。</p>
+<p>需要注意的是，工作（量）和完成的内容不是相互独立的，丰满的内容需要一定的工作量作支撑，而工作量大则理应会有较丰满的成果（如果没有，需要反思自己）。因此你不要说”虽然我实现的少，但我费时多啊！“，也不要想着”我用很小的工作量完成了大量的内容“。</p>
+<p>因此一个很显然的事实就是：<strong>如果你论文内容实际上就是很苍白，工作量不大，那你就等着老师发落吧</strong>。不要想着能忽悠老师，老师是长者，经历的比我们多，很难忽悠的。所以如果论文确实比较欠缺工作量，答辩的时候，<strong>态度诚恳，承认自己的不足，甚至必要时留下泪水(就怕莫斯科不相信眼泪…)</strong>。这样的话，通过答辩的概率也比较高。</p>
+<p>但是<strong>如果论文确实有一定工作量的话，那展示自己的工作量就很重要</strong>了。我自认为我的论文有一定的工作量，然而我一开始就是不注意展示自己工作量（其实也是我懒没准备好。。。），因此被指导老师臭骂了一顿。后来我在老师的细心指导下，修改了答辩PPT，我自己也准备一下讲稿，最后较好地完成了答辩。</p>
+<p>那么如何展示自己的工作呢？</p>
+<h3 id="如何展示"><a href="#如何展示" class="headerlink" title="如何展示"></a>如何展示</h3><p>毕业论文答辩，首先<strong>切忌过多技术细节</strong>。比如我毕业论文内容包括了小域分布在量子安全性证明中的作用展示，但是我在答辩的时候对这个是只字不提的，哪怕这个东西占了我一些篇幅而且也是难点，但<strong>老师们并不想听细节，老师只想知道你工作量怎么样、你付出了怎样的努力</strong>。</p>
+<p>我在看别的同学进行答辩的时候，都会犯一些错误，比如过多的细节介绍，尤其是非重点内容的细节介绍，比如说数据库登录的代码展示…说句不好听的，如果这也是重点内容的话那这论文就真的很苍白了。又或者是过多的介绍自己论文中一些重要概念，比如场景识别的什么STN网络，其实这个东西并不需要讲的过细，提及一下就好。我展示的时候，实际上连“量子安全”的定义都没讲，而老师们其实也并不感兴趣。老师甚至不需要听懂你讲的东西（如果答辩老师没有一个是熟悉你所做内容的领域的话），也不要认为自己必须要把一些概念讲的很清楚，还是那句话，<strong>展示工作量</strong>。</p>
+<p>那么我是怎么展示的呢？我主要表达了如下的信息：</p>
+<ol>
+<li>我<strong>阅读了大量的权威文献</strong>，参考文献中有一半的论文我都精读过</li>
+<li>我和老师、师兄进行了<strong>大量讨论</strong></li>
+<li>我未来要读研，因此我希望通过这个毕业论文进行预热（与自己未来工作搭上关系）。</li>
 </ol>
+<p>以上三点其实就是我所展示的主要工作量，而老师们也主要是被我这几点说服（当然啦，王立斌老师的光环加持也很重要哈哈哈），哪怕我这个论文只是做了点微小的贡献，没有什么很新的东西，但老师们还是认可了我的工作。</p>
+<p>注意，这些工作我都是认真做了的，学术论文我确实有精读，这些论文也确实发在比较好的会议或期刊上。相关的密码学、量子计算教材我也都阅读并且进行了不少的讨论。<strong>在答辩中我没有给出任何虚假信息。</strong></p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>以上是我作为学生，对毕业答辩的一些看法，总之：</p>
+<ol>
+<li><strong>认真做毕业设计，内容充实、难度合适</strong></li>
+<li><strong>毕业答辩是展示工作量，不是展示你有多牛逼</strong></li>
+<li><strong>展示时切忌过多技术细节</strong></li>
+<li><strong>态度诚恳，承认不足</strong></li>
+</ol>
+<p>以上条件满足不够2条，挂的可能性可能会比较高。</p>
 
       
     </div>
@@ -346,9 +364,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/密码学/" rel="tag"># 密码学</a>
-          
-            <a href="/tags/算法/" rel="tag"># 算法</a>
+            <a href="/tags/日常生活/" rel="tag"># 日常生活</a>
           
         </div>
       
@@ -361,8 +377,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/03/07/quickexp/" rel="next" title="对快速幂运算的一点思考">
-                <i class="fa fa-chevron-left"></i> 对快速幂运算的一点思考
+              <a href="/2018/04/18/P vs NP, PF vs PC/" rel="next" title="搜索问题与判定问题、P vs NP 与 PC vs PF">
+                <i class="fa fa-chevron-left"></i> 搜索问题与判定问题、P vs NP 与 PC vs PF
               </a>
             
           </div>
@@ -371,8 +387,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/09/07/进程内存修改小实例/" rel="prev" title="进程内容修改小实例">
-                进程内容修改小实例 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/04/19/NP与coNP/" rel="prev" title="非确定性图灵机输出取反与coNP">
+                非确定性图灵机输出取反与coNP <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -518,7 +534,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目标"><span class="nav-number">1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过程"><span class="nav-number">2.</span> <span class="nav-text">过程</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#毕业答辩：展示工作（量）"><span class="nav-number">1.</span> <span class="nav-text">毕业答辩：展示工作（量）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何展示"><span class="nav-number">2.</span> <span class="nav-text">如何展示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结论"><span class="nav-number">3.</span> <span class="nav-text">结论</span></a></li></ol></div>
             
 
           </div>
