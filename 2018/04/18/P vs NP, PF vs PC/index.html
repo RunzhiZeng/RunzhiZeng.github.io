@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="在直观解释 P v.s. NP问题 时，人们常常会这样类比“验证解是否寻找解一样简单？”。其实严格上讲，P v.s. NP问题与这个说法的联系并不直接，因为这个说法在一定程度上混淆了搜索问题(search problem)和判定性问题(decision problem)。有一定计算理论基础的人会知道，P v.s. NP问题是对判定性问题的复杂性区分（哪些问题有高效算法，哪些没有），而“寻找解和验证">
+<meta name="description" content="在直观解释 P v.s. NP问题 时，人们常常会这样类比“验证解是否寻找解一样简单？”。其实严格上讲，P v.s. NP问题与这个说法的联系并不直接，因为这个说法在一定程度上混淆了搜索问题(search problem)和判定性问题(decision problem)。有一定计算理论基础的人会知道，P v.s. NP问题是针对判定性问题的，而“寻找解和验证解是否一样简单？”这个问题是针对搜索性问">
 <meta name="keywords" content="计算理论">
 <meta property="og:type" content="article">
 <meta property="og:title" content="搜索问题与判定问题、P vs NP 与 PC vs PF">
 <meta property="og:url" content="https://runzhizeng.github.io/2018/04/18/P vs NP, PF vs PC/index.html">
 <meta property="og:site_name" content="润智的博客">
-<meta property="og:description" content="在直观解释 P v.s. NP问题 时，人们常常会这样类比“验证解是否寻找解一样简单？”。其实严格上讲，P v.s. NP问题与这个说法的联系并不直接，因为这个说法在一定程度上混淆了搜索问题(search problem)和判定性问题(decision problem)。有一定计算理论基础的人会知道，P v.s. NP问题是对判定性问题的复杂性区分（哪些问题有高效算法，哪些没有），而“寻找解和验证">
+<meta property="og:description" content="在直观解释 P v.s. NP问题 时，人们常常会这样类比“验证解是否寻找解一样简单？”。其实严格上讲，P v.s. NP问题与这个说法的联系并不直接，因为这个说法在一定程度上混淆了搜索问题(search problem)和判定性问题(decision problem)。有一定计算理论基础的人会知道，P v.s. NP问题是针对判定性问题的，而“寻找解和验证解是否一样简单？”这个问题是针对搜索性问">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-19T08:24:01.545Z">
+<meta property="og:updated_time" content="2018-04-19T12:33:20.078Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搜索问题与判定问题、P vs NP 与 PC vs PF">
-<meta name="twitter:description" content="在直观解释 P v.s. NP问题 时，人们常常会这样类比“验证解是否寻找解一样简单？”。其实严格上讲，P v.s. NP问题与这个说法的联系并不直接，因为这个说法在一定程度上混淆了搜索问题(search problem)和判定性问题(decision problem)。有一定计算理论基础的人会知道，P v.s. NP问题是对判定性问题的复杂性区分（哪些问题有高效算法，哪些没有），而“寻找解和验证">
+<meta name="twitter:description" content="在直观解释 P v.s. NP问题 时，人们常常会这样类比“验证解是否寻找解一样简单？”。其实严格上讲，P v.s. NP问题与这个说法的联系并不直接，因为这个说法在一定程度上混淆了搜索问题(search problem)和判定性问题(decision problem)。有一定计算理论基础的人会知道，P v.s. NP问题是针对判定性问题的，而“寻找解和验证解是否一样简单？”这个问题是针对搜索性问">
 
 
 
@@ -320,7 +320,7 @@
       
 
       
-        <p>在直观解释 P v.s. NP问题 时，人们常常会这样类比“验证解是否寻找解一样简单？”。其实严格上讲，P v.s. NP问题与这个说法的联系并不直接，因为这个说法在一定程度上混淆了搜索问题(search problem)和判定性问题(decision problem)。有一定计算理论基础的人会知道，P v.s. NP问题是对判定性问题的复杂性区分（哪些问题有高效算法，哪些没有），而“寻找解和验证解是否一样简单？”这其实是针对搜索性问题的复杂性区分。</p>
+        <p>在直观解释 P v.s. NP问题 时，人们常常会这样类比“验证解是否寻找解一样简单？”。其实严格上讲，P v.s. NP问题与这个说法的联系并不直接，因为这个说法在一定程度上混淆了搜索问题(search problem)和判定性问题(decision problem)。有一定计算理论基础的人会知道，P v.s. NP问题是针对判定性问题的，而“寻找解和验证解是否一样简单？”这个问题是针对搜索性问题。</p>
 <p>本文尝试解释，为什么P v.s. NP问题可直观解释为“寻找解和验证解是否一样简单？”。首先要区分搜索问题和判定性问题。有相关计算理论背景的朋友可以快速略读直达倒数第二章。</p>
 <h2 id="搜索性问题与判定性问题"><a href="#搜索性问题与判定性问题" class="headerlink" title="搜索性问题与判定性问题"></a>搜索性问题与判定性问题</h2><p>给定关系$R$，记$R(x)=\{y:(x,y)\in R\}$（$R(x)$有可能是空集）</p>
 <p><strong>搜索问题.</strong> $R$上的搜索问题为：给定$x$，寻找$y$使得$y\in R(x)$（或$(x,y)\in R$）。$x$常被称为<strong>问题实例</strong>，$R(x)$可以理解为问题实例$x$对应的解的空间。</p>

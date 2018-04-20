@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="没有个性">
+<meta name="description" content="前年讨论计算理论时，遇到了一个这样的问题： 设$\overline{L}\in \mathcal{coNP}$，由定义知，存在非确定性图灵机$NTM_L$判定$L$，即$NTM_L(x)=1 \iff x\in L$ 现构造如下图灵机$NTM’_{coL}$ $NTM’_{coL}(x):$  如果$NTM(x)=1$,则返回0. 否则返回1．  现在问题是$NTM’_{coL}$是否判定了$\o">
 <meta name="keywords" content="计算理论">
 <meta property="og:type" content="article">
-<meta property="og:title" content="非确定性图灵机输出取反与coNP">
+<meta property="og:title" content="一个错误的NP=coNP证明">
 <meta property="og:url" content="https://runzhizeng.github.io/2018/04/19/NP与coNP/index.html">
 <meta property="og:site_name" content="润智的博客">
-<meta property="og:description" content="没有个性">
+<meta property="og:description" content="前年讨论计算理论时，遇到了一个这样的问题： 设$\overline{L}\in \mathcal{coNP}$，由定义知，存在非确定性图灵机$NTM_L$判定$L$，即$NTM_L(x)=1 \iff x\in L$ 现构造如下图灵机$NTM’_{coL}$ $NTM’_{coL}(x):$  如果$NTM(x)=1$,则返回0. 否则返回1．  现在问题是$NTM’_{coL}$是否判定了$\o">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-19T03:45:59.351Z">
+<meta property="og:updated_time" content="2018-04-19T14:01:51.265Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="非确定性图灵机输出取反与coNP">
-<meta name="twitter:description" content="没有个性">
+<meta name="twitter:title" content="一个错误的NP=coNP证明">
+<meta name="twitter:description" content="前年讨论计算理论时，遇到了一个这样的问题： 设$\overline{L}\in \mathcal{coNP}$，由定义知，存在非确定性图灵机$NTM_L$判定$L$，即$NTM_L(x)=1 \iff x\in L$ 现构造如下图灵机$NTM’_{coL}$ $NTM’_{coL}(x):$  如果$NTM(x)=1$,则返回0. 否则返回1．  现在问题是$NTM’_{coL}$是否判定了$\o">
 
 
 
@@ -126,7 +126,7 @@
 
 
 
-  <title>非确定性图灵机输出取反与coNP | 润智的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>一个错误的NP=coNP证明 | 润智的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">非确定性图灵机输出取反与coNP</h1>
+          <h1 class="post-title" itemprop="name headline">一个错误的NP=coNP证明</h1>
         
 
         <div class="post-meta">
@@ -282,7 +282,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-19T11:45:59+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-19T22:01:51+08:00">
                 2018-04-19
               </time>
             
@@ -320,7 +320,28 @@
       
 
       
-        
+        <p>前年讨论计算理论时，遇到了一个这样的问题：</p>
+<p>设$\overline{L}\in \mathcal{coNP}$，由定义知，存在非确定性图灵机$NTM_L$判定$L$，即$NTM_L(x)=1 \iff x\in L$</p>
+<p>现构造如下图灵机$NTM’_{coL}$</p>
+<p>$NTM’_{coL}(x):$</p>
+<ol>
+<li>如果$NTM(x)=1$,则返回0.</li>
+<li>否则返回1．</li>
+</ol>
+<p><strong>现在问题是$NTM’_{coL}$是否判定了$\overline{L}$。</strong></p>
+<p>显然问题的答案是“否”，以下有三种解释。</p>
+<p><strong>解释一</strong>：</p>
+<p>如果$NTM’_{coL}$判定了$\overline{L}$，我们这不解了个开放性难题$(NP =_? coNP)$吗？显然答案是否定的。</p>
+<p><strong>解释二：</strong></p>
+<p>可以用$NP$另外的定义进行解释，$NP$类除了用非确定性图灵机来描述之外，还可以用高效验证算法的来描述。该解释较直观，请自行查阅相关定义，这里不作详细的解释了。</p>
+<p><strong>解释三：</strong></p>
+<p>该解释从$NTM$本身的性质来指出$NTM’_{coL}$的问题。</p>
+<blockquote>
+<p> <strong>“如果NTM(x)=1,则返回0”，这是什么行为？它意思是这样吗：“$NTM’_{coL}$仅仅在$NTM_L$的基础上将所有计算分支进行逆转”那如果这样的话，显然$NTM’_{coL}$无法判定$\overline{L}$。</strong></p>
+</blockquote>
+<p>实际上”如果$NTM(x)=1$,则返回0.”是一种不”自然”的操作行为，为什么？很简单，$NTM$是一种理想化的模型，它没有现实对应物（并行计算和这玩意一点关系都没有），将$NTM$作为子程序进行调用，则父程序本身就是一个$NTM$。而当子$NTM$在某个计算分支中返回1，需要注意到这个计算分支实际被包括在父$NTM$的某个计算分支中。如果该父$NTM$计算分支仅仅只是返回0，那么实际上对判定$\overline{L}$没有任何帮助。</p>
+<p>比如说，$SAT$问题即判定公式是否可满足，而$\overline{SAT}$问题则是判定公式是否不可满足。当然，想求解公式$x$是否有$x\in_? \overline{SAT}$时可以这样：如果$x \in SAT$，则判断$x \notin \overline{SAT}$，否则$x\in \overline{SAT}$。这个过程是合理的，但是这个过程和最上面的$NTM’_{coL}$算法完全不是一个意思！</p>
+
       
     </div>
     
