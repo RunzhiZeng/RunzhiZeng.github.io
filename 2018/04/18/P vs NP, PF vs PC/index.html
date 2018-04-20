@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="在直观解释 P v.s. NP问题 时，人们常常会这样类比“验证解是否寻找解一样简单？”。其实严格上讲，P v.s. NP问题与这个说法的联系并不直接，因为这个说法在一定程度上混淆了搜索问题(search problem)和判定性问题(decision problem)。有一定计算理论基础的人会知道，P v.s. NP问题是针对判定性问题的，而“寻找解和验证解是否一样简单？”这个问题是针对搜索性问">
+<meta name="description" content="在直观解释 P v.s. NP问题 时，人们常常会这样类比“寻找解是否难于验证解？”。其实严格上讲，P v.s. NP问题与这个说法的联系并不直接，因为这个说法在一定程度上混淆了搜索问题(search problem)和判定性问题(decision problem)。有一定计算理论基础的人会知道，P v.s. NP问题是针对判定性问题的，而“寻找解和验证解是否一样简单？”这个问题是针对搜索性问题。">
 <meta name="keywords" content="计算理论">
 <meta property="og:type" content="article">
 <meta property="og:title" content="搜索问题与判定问题、P vs NP 与 PC vs PF">
 <meta property="og:url" content="https://runzhizeng.github.io/2018/04/18/P vs NP, PF vs PC/index.html">
 <meta property="og:site_name" content="润智的博客">
-<meta property="og:description" content="在直观解释 P v.s. NP问题 时，人们常常会这样类比“验证解是否寻找解一样简单？”。其实严格上讲，P v.s. NP问题与这个说法的联系并不直接，因为这个说法在一定程度上混淆了搜索问题(search problem)和判定性问题(decision problem)。有一定计算理论基础的人会知道，P v.s. NP问题是针对判定性问题的，而“寻找解和验证解是否一样简单？”这个问题是针对搜索性问">
+<meta property="og:description" content="在直观解释 P v.s. NP问题 时，人们常常会这样类比“寻找解是否难于验证解？”。其实严格上讲，P v.s. NP问题与这个说法的联系并不直接，因为这个说法在一定程度上混淆了搜索问题(search problem)和判定性问题(decision problem)。有一定计算理论基础的人会知道，P v.s. NP问题是针对判定性问题的，而“寻找解和验证解是否一样简单？”这个问题是针对搜索性问题。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-19T12:33:20.078Z">
+<meta property="og:updated_time" content="2018-04-20T13:51:20.578Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搜索问题与判定问题、P vs NP 与 PC vs PF">
-<meta name="twitter:description" content="在直观解释 P v.s. NP问题 时，人们常常会这样类比“验证解是否寻找解一样简单？”。其实严格上讲，P v.s. NP问题与这个说法的联系并不直接，因为这个说法在一定程度上混淆了搜索问题(search problem)和判定性问题(decision problem)。有一定计算理论基础的人会知道，P v.s. NP问题是针对判定性问题的，而“寻找解和验证解是否一样简单？”这个问题是针对搜索性问">
+<meta name="twitter:description" content="在直观解释 P v.s. NP问题 时，人们常常会这样类比“寻找解是否难于验证解？”。其实严格上讲，P v.s. NP问题与这个说法的联系并不直接，因为这个说法在一定程度上混淆了搜索问题(search problem)和判定性问题(decision problem)。有一定计算理论基础的人会知道，P v.s. NP问题是针对判定性问题的，而“寻找解和验证解是否一样简单？”这个问题是针对搜索性问题。">
 
 
 
@@ -320,25 +320,27 @@
       
 
       
-        <p>在直观解释 P v.s. NP问题 时，人们常常会这样类比“验证解是否寻找解一样简单？”。其实严格上讲，P v.s. NP问题与这个说法的联系并不直接，因为这个说法在一定程度上混淆了搜索问题(search problem)和判定性问题(decision problem)。有一定计算理论基础的人会知道，P v.s. NP问题是针对判定性问题的，而“寻找解和验证解是否一样简单？”这个问题是针对搜索性问题。</p>
-<p>本文尝试解释，为什么P v.s. NP问题可直观解释为“寻找解和验证解是否一样简单？”。首先要区分搜索问题和判定性问题。有相关计算理论背景的朋友可以快速略读直达倒数第二章。</p>
-<h2 id="搜索性问题与判定性问题"><a href="#搜索性问题与判定性问题" class="headerlink" title="搜索性问题与判定性问题"></a>搜索性问题与判定性问题</h2><p>给定关系$R$，记$R(x)=\{y:(x,y)\in R\}$（$R(x)$有可能是空集）</p>
-<p><strong>搜索问题.</strong> $R$上的搜索问题为：给定$x$，寻找$y$使得$y\in R(x)$（或$(x,y)\in R$）。$x$常被称为<strong>问题实例</strong>，$R(x)$可以理解为问题实例$x$对应的解的空间。</p>
+        <p>在直观解释 P v.s. NP问题 时，人们常常会这样类比“寻找解是否难于验证解？”。其实严格上讲，P v.s. NP问题与这个说法的联系并不直接，因为这个说法在一定程度上混淆了搜索问题(search problem)和判定性问题(decision problem)。有一定计算理论基础的人会知道，P v.s. NP问题是针对判定性问题的，而“寻找解和验证解是否一样简单？”这个问题是针对搜索性问题。</p>
+<p>那么搜索问题是否像判定问题那样，有类似于P vs NP那样的论题呢？有的，搜索性问题有”PF vs PC”。而”PF vs PC”才直接对应于“寻找解是否难于验证解？”。但是，科学家们发现，如果解了”P vs NP”问题，则”PF vs PC”迎刃而解。”P vs NP”问题与”PF vs PC”有着十分紧密的联系。</p>
+<p>本文尝试解释：搜索问题与判定性问题的关系、”P vs NP”与”PC vs PF”的关系。</p>
+<h2 id="搜索性问题与判定性问题"><a href="#搜索性问题与判定性问题" class="headerlink" title="搜索性问题与判定性问题"></a>搜索性问题与判定性问题</h2><p>给定二元关系$R$，记$R(x)=\{y:(x,y)\in R\}$（$R(x)$有可能是空集）</p>
+<p><strong>搜索问题.</strong> $R$上的搜索问题为：给定$x$，寻找$y$使得$y\in R(x)$（或$(x,y)\in R$）。$x$常被称为<strong>问题实例</strong>，$R(x)$可以理解为问题实例$x$对应的解的空间。注意，$R(x)=\varnothing$意味着问题实例$x$无解（又或是$x$不是合法的问题描述）</p>
 <p><strong>判定问题.</strong> 设$S\subseteq \{0,1\}^*$，$S$上的判定性问题为：给定$x$，判定$x$是否属于$S$($x\in_?S$)。</p>
+<p>可以比较容易地去从以上两个形式化证明中挖掘出一定的直观，这里不做赘述。</p>
 <p>两种问题的复杂性有不一样的衡量方式。搜索问题关注于：寻找解与核实(check)解的正确性。而判定性问题专注于证明与验证：”证明$x$是否属于$S$ “与 “验证(verify)$x$属于$S$的证明是否正确”。注意这里的“核实”与“验证”含义并不一样。</p>
-<h2 id="两种问题的复杂性区分"><a href="#两种问题的复杂性区分" class="headerlink" title="两种问题的复杂性区分"></a>两种问题的复杂性区分</h2><p>在描述搜索性问题的复杂性时还需要用到多项式界定关系这一概念：</p>
+<h2 id="两种问题的复杂性定义"><a href="#两种问题的复杂性定义" class="headerlink" title="两种问题的复杂性定义"></a>两种问题的复杂性定义</h2><p>在描述搜索性问题的复杂性时还需要用到多项式界定关系这一概念：</p>
 <p><strong>多项式界定的关系(polynomially bounded relations)</strong>:若关系$R\subseteq \{0,1\}^<em> \times \{0,1\}^</em>$满足：存在多项式$p$，对所有的$(x,y)\in R$都有$|y| \le p(|x|)$，则称$R$是多项式界定的。</p>
 <blockquote>
-<p>​其中$|x|$指定对象$x$的描述长度，因为一般是用比特串描述对象，$|x|$指描述$x$所用的比特数。<br>（关于描述的复杂性：任何一个对象都有无穷多种描述，比如描述我你可用“高大威猛帅气….”这样的话，但也可以描述为“华南师范大学学号2014210<em>**</em>”。。。一般$|x|$指最短的能描述$x$的比特串的长度）</p>
+<p>​其中$|x|$指定对象$x$的描述长度，因为一般是用比特串描述对象，$|x|$指描述$x$所用的比特数。<br>（关于描述的长度：任何一个对象都有无穷多种描述，比如描述我你可用“高大威猛帅气….”这样的话，但也可以描述为“华南师范大学学号2014210<em>**</em>”。。。一般$|x|$指最短的能描述$x$的比特串的长度）</p>
 </blockquote>
-<h3 id="搜索性问题的复杂性区分"><a href="#搜索性问题的复杂性区分" class="headerlink" title="搜索性问题的复杂性区分"></a>搜索性问题的复杂性区分</h3><p>设$R$是多项式界定关系。之所以需要$R$是多项式界定关系，是因为对于$R$上的搜索问题，如果算法找出的解$y$是指数大的，则该算法不可能是多项式时间算法，因此非多项式界的关系在此不考虑。</p>
+<h3 id="搜索性问题的复杂性定义"><a href="#搜索性问题的复杂性定义" class="headerlink" title="搜索性问题的复杂性定义"></a>搜索性问题的复杂性定义</h3><p>设$R$是多项式界定关系。之所以需要$R$是多项式界定关系，是因为对于$R$上的搜索问题，如果算法找出的解$y$是指数大的，则该算法不可能是多项式时间算法，因此非多项式界的关系在此不考虑。</p>
 <p><strong>“可高效寻找”类——PF</strong></p>
 <p>如果存在多项式时间算法$A$，对于任意的$x$，$A(x)\in R(x)$（即A找出了问题实例x的解，若$R(x)$是空集，则$A(x)$输出特殊符号$\perp$，即指出问题实例$x$无解），则$R$上的搜索问题是<strong>可高效寻找</strong>或<strong>可高效解</strong>的。</p>
 <p>所有的可高效解的多项式界定关系$R$（对应的搜索问题）构成一个集合，该集合称为<strong>复杂性类$\mathcal{PF}$</strong>(polynomial-time find)。</p>
 <p><strong>“可高效核实”类——PC</strong></p>
 <p>如果存在多项式时间算法$A$，对于任意的$(x,y)$，$A(x,y)=1$当且仅当$(x,y)\in R$，则$R$上的搜索问题是<strong>可高效核实</strong>的。</p>
-<p>所有的可高效验证的多项式界定关系$R$（对应的搜索问题）构成一个集合，该集合称为<strong>复杂性类$\mathcal{PC}$</strong>(polynomial-time check)。</p>
-<h3 id="判定性问题的复杂性区分"><a href="#判定性问题的复杂性区分" class="headerlink" title="判定性问题的复杂性区分"></a>判定性问题的复杂性区分</h3><p>记$S \subseteq {0,1}^*$为判定性问题对应的集合。</p>
+<p>所有的可高效核实的多项式界定关系$R$（对应的搜索问题）构成一个集合，该集合称为<strong>复杂性类$\mathcal{PC}$</strong>(polynomial-time check)。</p>
+<h3 id="判定性问题的复杂性定义"><a href="#判定性问题的复杂性定义" class="headerlink" title="判定性问题的复杂性定义"></a>判定性问题的复杂性定义</h3><p>记$S \subseteq {0,1}^*$为判定性问题对应的集合。</p>
 <p><strong>“可高效求解”类——P</strong></p>
 <p>如果存在多项式时间算法$A$满足:$A(x)=1 \iff x\in S$，则称$S$（对应的判定性问题）是可高效求解的。由于对于在判定性问题的语境中，“求解”意味着“证明成员关系”，因此也可以称$S$是”可高效证明“的，但一般“可高效求解”更通用一些。</p>
 <p>所有的可高效求解的判定性问题构成集合$\mathcal{P}$。</p>
@@ -352,37 +354,37 @@
 <p>则称$S$有可高效验证证明系统。</p>
 <p>$V$常被称为验证过程（算法），若$V(x,y)=1$，则$y$常被称为$x\in S$的NP-proof(或NP-witness)。即$y$是$x\in S$的证据。可高效验证证明系统中的可靠性意味着验证过程$V$的“安全性”，即如果$x\notin S$，任何伪证据$y$都无法欺骗$V$认为$x\in S$。</p>
 <p>所有的具有可高效验证证明系统的判定性问题构成集合$\mathcal{NP}$。</p>
-<h2 id="两种复杂性区分的关系"><a href="#两种复杂性区分的关系" class="headerlink" title="两种复杂性区分的关系"></a>两种复杂性区分的关系</h2><p><strong>$\mathcal{PC}$与$\mathcal{PF}$的关系</strong></p>
+<h2 id="两种复杂性定义的关系"><a href="#两种复杂性定义的关系" class="headerlink" title="两种复杂性定义的关系"></a>两种复杂性定义的关系</h2><p><strong>$\mathcal{PC}$与$\mathcal{PF}$的关系</strong></p>
 <p>由前面的定义，不难看出，$\mathcal{PC}$指那一类可高效验证解的问题（比如素数搜索问题，我们可以轻易地寻找判定一个数是不是素数），而$\mathcal{PF}$指那一类可高效求解的问题（还是素数搜索问题，我们可以轻易地寻找一个素数）。</p>
-<p>首先，一个事实是：$\mathcal{PF} - \mathcal{PC} \ne \varnothing$，即<strong>存在某些搜索问题，它可高效求解但不能高效核实答案</strong>。该事实其实很直接就告诉我们，“寻找解是否比验证解要简单？”这个问题的答案是“否”，因为存在可高效求解的问题无法高效验证。但显然，其实这个问题实际想问的是：$\mathcal{PC} \subseteq_? \mathcal{PF}$呢？即，<strong>可高效核实的搜索问题是否是可高效求解</strong>？下图展现了这一关系：</p>
-<p>$\mathcal{PC} \subseteq_? \mathcal{PF}$，这实际上是一个开放性问题。</p>
+<p>首先，一个事实是：$\mathcal{PF} - \mathcal{PC} \ne \varnothing$，即<strong>存在某些搜索问题，它可高效求解但不能高效核实答案</strong>（这些问题的结构并不自然）。该事实其实很直接就告诉我们，“寻找解是否难于验证解？”这个问题的答案是“否”，因为存在可高效求解的问题无法高效验证。但显然，其实这个问题实际想问的是：$\mathcal{PC} \subseteq_? \mathcal{PF}$呢？即，<strong>可高效核实的搜索问题是否是可高效求解</strong>？$\mathcal{PC} \subseteq_? \mathcal{PF}$，这实际上是一个开放性问题。</p>
 <p><strong>$\mathcal{P}$与 $\mathcal{NP}$的关系</strong></p>
 <p>$\mathcal{NP}$指的是，可高效验证证据真伪的那一类问题。如集合$S=\{x|x\text{是两个素数的乘积}\}$显然属于$\mathcal{NP}$，因为如果$x$属于$S$，那么$x$的NP-proof即是乘积为$x$的两个素数，而如果$x\notin S$，由整数素因子分解的唯一性知，不存在两个素数的乘积能得到$x$。</p>
-<p>$\mathcal{P}$指的是那一类可高效证明“成员关系”问题。比如集合$S=\{x|x\text{是个素数}\}$显然属于$\mathcal{P}$，因为我们有高效的素性测试算法直接告诉我们$x$与$S$的关系。</p>
-<p>与$\mathcal{PC}$与$\mathcal{PF}$不同，由$\mathcal{P}$与$\mathcal{NP}$的定义，必然有$\mathcal{P}\subseteq \mathcal{NP}$（请自行验证）。然而回看到上面的例子$S=\{x|x\text{是两个素数的乘积}\}$，这个问题是否属于$P$呢？即，是否存在这样的算法：该算法可高效判定一个数是否是某两个素数的乘积呢？</p>
-<p>更一般地，$\mathcal{NP} \subseteq_?  \mathcal{P}$，这实际上也是一个开放性难题。</p>
-<p>由以上的论述可感觉出，$\mathcal{P}$ v.s. $\mathcal{NP}$与$\mathcal{PC}$ v.s. $\mathcal{PF}$有着非常紧密的关系。</p>
-<h2 id="mathcal-NP-mathcal-P-iff-mathcal-PC-subseteq-mathcal-PF"><a href="#mathcal-NP-mathcal-P-iff-mathcal-PC-subseteq-mathcal-PF" class="headerlink" title="$\mathcal{NP}=\mathcal{P} \iff \mathcal{PC}\subseteq \mathcal{PF}$"></a>$\mathcal{NP}=\mathcal{P} \iff \mathcal{PC}\subseteq \mathcal{PF}$</h2><p>$\mathcal{NP}=\mathcal{P} \iff \mathcal{PC}\subseteq \mathcal{PF}$这个命题是什么意思呢？其实就是：如果$\mathcal{NP}=\mathcal{P}$，那么就有”寻找解不会比验证解更难“。”寻找解不会比验证解更难“这个描述的哲学含义这里不作讨论，接下来将证明$\mathcal{NP}=\mathcal{P} \iff \mathcal{PC}\subseteq \mathcal{PF}$:</p>
-<p><strong>先证$\mathcal{NP}=\mathcal{P} \Longleftarrow \mathcal{PC}\subseteq \mathcal{PF}$:</strong></p>
+<p>$\mathcal{P}$指的是那一类可高效证明“成员关系”问题。比如集合$S=\{x|x\text{是个素数}\}$显然属于$\mathcal{P}$，因为我们有高效的素性测试算法直接告诉我们$x$是不是素数。</p>
+<p>与$\mathcal{PC}$与$\mathcal{PF}$不同，由$\mathcal{P}$与$\mathcal{NP}$的定义，必然有$\mathcal{P}\subseteq \mathcal{NP}$（请自行验证）。然而回看到上面的例子$S=\{x|x\text{是两个素数的乘积}\}$，这个问题是否属于$P$呢？即，是否存在这样的算法：该算法可高效判定一个数是否是某两个素数的乘积呢？更一般地，$\mathcal{NP} \subseteq_?  \mathcal{P}$，这实际上也是一个开放性难题。</p>
+<p>$\mathcal{P}$ v.s. $\mathcal{NP}$与$\mathcal{PC}$ v.s. $\mathcal{PF}$其实有着非常紧密的关系，当然其实本质上是，搜索性问题和判定性问题有着非常紧密的关系。</p>
+<h2 id="mathcal-NP-mathcal-P-iff-mathcal-PC-subseteq-mathcal-PF"><a href="#mathcal-NP-mathcal-P-iff-mathcal-PC-subseteq-mathcal-PF" class="headerlink" title="$\mathcal{NP}=\mathcal{P} \iff \mathcal{PC}\subseteq \mathcal{PF}$"></a>$\mathcal{NP}=\mathcal{P} \iff \mathcal{PC}\subseteq \mathcal{PF}$</h2><p>$\mathcal{NP}=\mathcal{P} \iff \mathcal{PC}\subseteq \mathcal{PF}$这个命题是什么意思呢？其实就是：如果$\mathcal{NP}=\mathcal{P}$，那么就有”寻找解不会比验证解更难”。”寻找解不会比验证解更难”这个描述的哲学含义这里不作讨论。</p>
+<p>接下来将证明$\mathcal{NP}=\mathcal{P} \iff \mathcal{PC}\subseteq \mathcal{PF}$：</p>
+<p>$\mathcal{NP}=\mathcal{P} \Longleftarrow \mathcal{PC}\subseteq \mathcal{PF}$:</p>
 <blockquote>
 <p>证明思路:</p>
 <p>$\mathcal{PC}\subseteq \mathcal{PF}$意味着可高效核实解的搜索问题都有高效算法，要证明$\mathcal{NP}=\mathcal{P}$，只需要构造一个高效求解NP-proof的算法即可。对于某个$x$,如果其NP-proof不存在即有$x\notin S$，否则有$x\in S$</p>
 </blockquote>
-<p>对于$\forall S \in \mathcal{NP} $，由定义知，$S$有高效验证过程$V$。</p>
+<p>对于$\forall S \in \mathcal{NP} ​$，由定义知，$S​$有高效验证过程$V​$。</p>
 <p>现令关系$R=\{(x,y): V(x,y)=1\}$。由$\mathcal{NP}$定义中的完整性知，关系$R$是多项式界定关系且$R \in \mathcal{PC}$。</p>
 <p>由假设$\mathcal{PC}\subseteq \mathcal{PF}$，存在求解$R$的高效算法$A$，现构造另外一个算法$P_A$:$P_A(x)=1 \iff A(x)\ne \perp$。</p>
 <p>如果$A(x)\ne \perp$意味着$R(x)$不是空集，即存在$y\in R(x)$使得$(x,y)\in R$，由$\mathcal{NP}$定义中的可靠性知$x\in S$，此时$P_A(x)$也输出１。如果$A(x)=\perp$，这意味着$R(x)$是空集，不存在$y$使得$(x,y)\in R$，也即$x\notin S$，此时$P_A(x)$也输出０。因此算法$P_A$高效求解了$S$。由$S$的任意性知，$\mathcal{NP} \subseteq \mathcal{P}$，即有$\mathcal{P} = \mathcal{NP}$。</p>
-<p><strong>再证$\mathcal{NP}=\mathcal{P} \Longrightarrow \mathcal{PC}\subseteq \mathcal{PF}$:</strong></p>
+<p>$\mathcal{NP}=\mathcal{P} \Longrightarrow \mathcal{PC}\subseteq \mathcal{PF}$:</p>
 <blockquote>
-<p>证明思路:</p>
-<p>$\mathcal{NP}=\mathcal{P}$意味着可高效核实的判定性问题都可以高效解，这使我们不需要用NP-proof即可证明成员的关系。对于问题实例$x$，可通过穷举求出$R(x)$中的某个元素。因为$R$是多项式界定关系，因此该穷举是高效的。</p>
+<p>证明思路：</p>
+<p>如果$\mathcal{NP}=\mathcal{P}$，那么就意味着可高效验证的判定问题可以被高效求解。给定一个在$\mathcal{PC}$中的搜索性问题，我们可以构造一个巧妙的$\mathcal{NP}$判定问题：判定某一个串是否是该搜索性问题某个解的前缀。由假设，该判定问题具有高效算法。</p>
+<p>再构造一个算法，该算法通过不断对解的前缀进行扩张（加上一个比特），并且扩张后再判定新增的比特应该是0还是1（通过针对巧妙构造的判定问题的多项式时间算法），迭代操作即可构造出搜索问题的解。因为$R$是多项式界定关系，因此算法高效地寻找出一个解。</p>
 </blockquote>
 <p>对于$\forall R \in \mathcal{PC}$，由定义知，$R$有算法$A(x,y)=1\iff (x,y)\in R$。</p>
-<p>现令集合$S_R=\{\langle x,y’\rangle:\exists y’’ (x,y’y’’)\in R\}$，由$R\in \mathcal{PC}$有$S_R\in \mathcal{NP}$，由假设$\mathcal{NP} = \mathcal{P}$知存在算法$V$满足$V(\langle x,y’\rangle )=1 \iff \langle x,y’\rangle \in S_R$。$\langle x,y’ \rangle\in S_R$意味着，$y’$是问题实例$x$某个解的前缀。由于$R$是多项式界定关系，因此$|y’y’’|=O(poly(|x|))$。给定$(x,y’)$，可通过$V$来判定$(x,y’0) \in_? S_R$与$(x,y’1)\in_? S_R$。</p>
+<p>现令集合$S’_R=\{\langle x,y’\rangle:\exists y’’ (x,y’y’’)\in R\}$，由$R\in \mathcal{PC}$有$S_R\in \mathcal{NP}$，由假设$\mathcal{NP} = \mathcal{P}$知存在算法$V$满足$V(\langle x,y’\rangle )=1 \iff \langle x,y’\rangle \in S’_R$。$\langle x,y’ \rangle\in S’_R$意味着，$y’$是问题实例$x$某个解的前缀。由于$R$是多项式界定关系，因此$|y’y’’|=O(poly(|x|))$。</p>
+<p>给定$(x,y’)$，可通过$V$来判定$(x,y’0) \in_? S’_R$与$(x,y’1)\in_? S’_R$。</p>
 <p>现构造辅助算法$F’(x,y’)$:</p>
 <ol>
 <li>如果$A(x,y’)=1$，则返回$y’$</li>
-<li>令$V$为求解$S_R=\{\langle x,y’\rangle:\exists y’’ (x,y’y’’)\in R\}$的高效算法</li>
 <li>若$V(\langle x,y’0 \rangle)=1$,则运行$F’(x,y’0)$</li>
 <li>若$V(\langle x,y’1 \rangle)=1$,则运行$F’(x,y’1)$</li>
 <li>否则返回$\perp$</li>
@@ -393,7 +395,16 @@
 <li>若$V(x)=1$，运行$F’(x,0)$与$F’(x,1)$，返回非$\perp$的结果。</li>
 <li>否则返回$\perp$</li>
 </ol>
-<p>该算法涉及递归，因此较复杂。由$R$是多项式界定关系知，$F’$的递归深度是多项式大的，因此运行时间也是多项式时间。若$F$返回$y\ne \perp$，则这意味着$A(x,y)=1$，即$y\in R(x)$。若$F$返回$\perp$，则意味着$V(x)=0$，即$R(x)=\varnothing$。因此$F$高效求解了$R$。</p>
+<p>由$R$是多项式界定关系知，$F’$的递归深度是多项式大的，因此运行时间也是多项式时间。若$F$返回$y\ne \perp$，则这意味着$A(x,y)=1$，即$y\in R(x)$。若$F$返回$\perp$，则意味着$V(x)=0$，即$R(x)=\varnothing$。因此$F$高效求解了$R$。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>第三章证明了$\mathcal{NP}=\mathcal{P}\iff \mathcal{PC}\subseteq \mathcal{PF}$，也就是说，如果能证明$\mathcal{NP}=\mathcal{P}$，那么就会有”寻找解不会比验证解更难”。</p>
+<p>在研究计算复杂性的时候，人们更倾向于研究判定性问题，其中原因大致包括：</p>
+<ol>
+<li>判定性问题描述起来相对更简洁</li>
+<li>很多搜索性问题可规约到判定性问题（其规约形式可参考第三章）</li>
+<li>搜索性问题中的”NP-completeness”对应于判定性问题的NP-completenes（“自规约”）</li>
+<li>…</li>
+</ol>
+<p>总之呢，搜索问题与判定问题、P vs NP 与 PC vs PF都有着很密切的关系就对了～</p>
 
       
     </div>
@@ -581,7 +592,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#搜索性问题与判定性问题"><span class="nav-number">1.</span> <span class="nav-text">搜索性问题与判定性问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两种问题的复杂性区分"><span class="nav-number">2.</span> <span class="nav-text">两种问题的复杂性区分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#搜索性问题的复杂性区分"><span class="nav-number">2.1.</span> <span class="nav-text">搜索性问题的复杂性区分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判定性问题的复杂性区分"><span class="nav-number">2.2.</span> <span class="nav-text">判定性问题的复杂性区分</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两种复杂性区分的关系"><span class="nav-number">3.</span> <span class="nav-text">两种复杂性区分的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mathcal-NP-mathcal-P-iff-mathcal-PC-subseteq-mathcal-PF"><span class="nav-number">4.</span> <span class="nav-text">$\mathcal{NP}=\mathcal{P} \iff \mathcal{PC}\subseteq \mathcal{PF}$</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#搜索性问题与判定性问题"><span class="nav-number">1.</span> <span class="nav-text">搜索性问题与判定性问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两种问题的复杂性定义"><span class="nav-number">2.</span> <span class="nav-text">两种问题的复杂性定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#搜索性问题的复杂性定义"><span class="nav-number">2.1.</span> <span class="nav-text">搜索性问题的复杂性定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判定性问题的复杂性定义"><span class="nav-number">2.2.</span> <span class="nav-text">判定性问题的复杂性定义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两种复杂性定义的关系"><span class="nav-number">3.</span> <span class="nav-text">两种复杂性定义的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mathcal-NP-mathcal-P-iff-mathcal-PC-subseteq-mathcal-PF"><span class="nav-number">4.</span> <span class="nav-text">$\mathcal{NP}=\mathcal{P} \iff \mathcal{PC}\subseteq \mathcal{PF}$</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
