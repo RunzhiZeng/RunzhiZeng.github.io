@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="计算理论," />
 
 
 
@@ -79,16 +79,18 @@
 
 
 
-<meta name="description" content="没有个性">
-<meta property="og:type" content="website">
-<meta property="og:title" content="润智的博客">
-<meta property="og:url" content="https://runzhizeng.github.io/archives/2018/04/index.html">
+<meta name="description" content="问题前年讨论计算理论时，遇到了一个这样的问题： 设$\overline{L}\in \mathcal{coNP}$，由定义知，存在非确定性图灵机$NTM_L$判定$L$，即$NTM_L(x)=1 \iff x\in L$ 现构造如下图灵机$NTM’_{coL}$ $NTM’_{coL}(x):$  如果$NTM_L(x)=1​$,则返回0. 否则返回1．  现在问题是$NTM’_{coL}$是否判">
+<meta name="keywords" content="计算理论">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一个错误的NP=coNP证明：非确定性图灵机的输出取反">
+<meta property="og:url" content="https://runzhizeng.github.io/2018/04/21/NP与coNP/index.html">
 <meta property="og:site_name" content="润智的博客">
-<meta property="og:description" content="没有个性">
+<meta property="og:description" content="问题前年讨论计算理论时，遇到了一个这样的问题： 设$\overline{L}\in \mathcal{coNP}$，由定义知，存在非确定性图灵机$NTM_L$判定$L$，即$NTM_L(x)=1 \iff x\in L$ 现构造如下图灵机$NTM’_{coL}$ $NTM’_{coL}(x):$  如果$NTM_L(x)=1​$,则返回0. 否则返回1．  现在问题是$NTM’_{coL}$是否判">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-21T05:30:55.016Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="润智的博客">
-<meta name="twitter:description" content="没有个性">
+<meta name="twitter:title" content="一个错误的NP=coNP证明：非确定性图灵机的输出取反">
+<meta name="twitter:description" content="问题前年讨论计算理论时，遇到了一个这样的问题： 设$\overline{L}\in \mathcal{coNP}$，由定义知，存在非确定性图灵机$NTM_L$判定$L$，即$NTM_L(x)=1 \iff x\in L$ 现构造如下图灵机$NTM’_{coL}$ $NTM’_{coL}(x):$  如果$NTM_L(x)=1​$,则返回0. 否则返回1．  现在问题是$NTM’_{coL}$是否判">
 
 
 
@@ -118,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://runzhizeng.github.io/archives/2018/04/"/>
+  <link rel="canonical" href="https://runzhizeng.github.io/2018/04/21/NP与coNP/"/>
 
 
 
 
 
-  <title>归档 | 润智的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>一个错误的NP=coNP证明：非确定性图灵机的输出取反 | 润智的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -143,7 +145,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-archive">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -237,148 +239,171 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://runzhizeng.github.io/2018/04/21/NP与coNP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="润智">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="润智的博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">一个错误的NP=coNP证明：非确定性图灵机的输出取反</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-21T13:30:55+08:00">
+                2018-04-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        目前共计 7 篇日志。
-      </span>
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
+            
+          
 
-        
+          
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/21/NP与coNP/" itemprop="url">
-              
-                <span itemprop="name">一个错误的NP=coNP证明：非确定性图灵机的输出取反</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-21T13:30:55+08:00"
-              content="2018-04-21" >
-          04-21
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+        </div>
+      </header>
+    
 
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/19/毕业答辩/" itemprop="url">
-              
-                <span itemprop="name">本科毕业答辩</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-19T00:00:00+08:00"
-              content="2018-04-19" >
-          04-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/18/P vs NP, PF vs PC/" itemprop="url">
-              
-                <span itemprop="name">搜索问题与判定问题、P vs NP 与 PC vs PF</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-18T00:00:00+08:00"
-              content="2018-04-18" >
-          04-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>前年讨论计算理论时，遇到了一个这样的问题：</p>
+<p>设$\overline{L}\in \mathcal{coNP}$，由定义知，存在非确定性图灵机$NTM_L$判定$L$，即$NTM_L(x)=1 \iff x\in L$</p>
+<p>现构造如下图灵机$NTM’_{coL}$</p>
+<p>$NTM’_{coL}(x):$</p>
+<ol>
+<li>如果$NTM_L(x)=1​$,则返回0.</li>
+<li>否则返回1．</li>
+</ol>
+<p><strong>现在问题是$NTM’_{coL}$是否判定了$\overline{L}$。</strong></p>
+<p>显然问题的答案是“否”，以下有三种解释。</p>
+<p><strong>解释一</strong>：</p>
+<p>如果$NTM’_{coL}$判定了$\overline{L}$，我们这不解了个开放性难题$(NP =_? coNP)$吗？显然答案是否定的。</p>
+<p><strong>解释二：</strong></p>
+<p>可以用$NP$另外的定义进行解释，$NP$类除了用非确定性图灵机来描述之外，还可以用<strong>可高效验证</strong>这一概念来描述。该解释较直观，请自行查阅相关定义，这里不作详细的解释了。</p>
+<p><strong>解释三：</strong></p>
+<p>该解释从$NTM$本身的性质来指出$NTM’_{coL}$的问题。显然对于某些强迫症患者（比如我）来说，这种解释更好。</p>
+<p>实际上”如果$NTM_L(x)=1$,则返回0.”是一种不”自然”的操作行为，为什么？很简单，$NTM$是一种理想化的模型，它（暂时）没有现实对应物（并行计算和这玩意一点关系都没有），将$NTM$作为子程序进行调用其实是一种比较奇怪的行为。当然没有任何规则说不能调用NTM。显然调用$NTM$的父程序本身就是一个$NTM$。需要注意，<strong>子$NTM$的所有计算分支都分别被包含在父$NTM$的计算分支中。</strong></p>
+<p>当子$NTM$返回1的时候，实际上是指：<strong>子$NTM$的某条计算分支返回了1</strong>，而其他的计算分支我们并不知道会如何（可能返回０或者loop）。当然<strong>这条计算分支包含在父$NTM$中某条计算分支中</strong>，因此此时父$NTM$在该计算分支中只有三种选择，要么走向loop，要么返回0，要么返回1（此时将导致整个父$NTM$返回1）。</p>
+<p>现回到$NTM’_{coL}$的构造。当$NTM_{L}(x)=1$，此时$NTM’_{coL}$返回0，这当然没问题，但是要注意，<strong>这只是该计算分支返回0并停止</strong>而已，其他分支呢？不知道。要所有的分支都是返回0，才能使得$NTM’_{coL}(x)$返回0，而根据$NTM’_{coL}$的构造，显然我们无法确保其它分支也是0。比如说，$NTM_{L}(x)$的某条计算路径返回的是0,那么$NTM’_{coL}$在其对应的计算分支要做什么？返回1吗？那肯定不行，因为这将导致$NTM’_{coL}$返回1，这样的话$NTM’_{coL}$必然无法判定$\overline{L}$。返回0吗？那这样做也没有意义。</p>
+<p>其实归根结底，”如果$NTM_{L}(x)=1$,则返回0.”这一做法是不可行的，这做法忽视了非确定性图灵机返回值的定义。之所以我们会构造出$NTM’_{coL}$这样的图灵机，只是因为我们的思维还停在$DTM$的运作方式上。当然，我们可以用这个“有问题”的方法来证明$\mathcal{P}=\mathcal{coP}$，具体我就不再论述了。</p>
+<h3 id="讨论与胡扯"><a href="#讨论与胡扯" class="headerlink" title="讨论与胡扯"></a>讨论与胡扯</h3><p>关于$\mathcal{NP}$的定义，一些教材偏向于用<strong>可高效验证</strong>这一概念来刻画$\mathcal{NP}$，这样较好地避免了用非确定性图灵机定义所可能带来的理解上的问题。</p>
+<p>非确定性图灵机$NTM$的定义非常奇怪。比如，$NTM(x)=1$指某条计算分支返回1，$NTM(x)$返回0指所有计算分支返回0。其实这个定义就有点扯：</p>
+<p>“$NTM(x)=1$指某条计算分支返回1”这一说法尝试告诉我们，我们可以忽略其他计算分支不管，当某条分支停下并返回1那么就是整个$NTM$返回1。这就奇怪了！其他计算分支怎么会知道有某条计算分支返回1？好吧，$NTM$是一个整体，也许是这样：所有计算分支就像是在比谁先解题一样，率先返回1（先解出题）的那条计算分支控制了$NTM$，然后它强行杀掉所有其他的分支…..</p>
+<p>“$NTM(x)$返回0指所有计算分支返回0”这一说法更是怪了～因为这一说法好像在告诉我们，$NTM$中有个裁判，它看着所有的计算分支的解题过程，当它发现所有计算分支都解不出来（返回0）后，就按下$NTM$”返回0”的按钮，直接终结比赛….</p>
+<p>当然$NTM$本身就是一个抽象、理想的计算模型，不能以常理论。无论如何，我建议是：初学计算理论的人最好用<strong>可高效验证</strong>定义来接触$\mathcal{NP}$。</p>
 
       
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/计算理论/" rel="tag"># 计算理论</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/19/毕业答辩/" rel="next" title="本科毕业答辩">
+                <i class="fa fa-chevron-left"></i> 本科毕业答辩
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -386,6 +411,16 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
 
         </div>
         
@@ -406,8 +441,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -480,6 +524,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#讨论与胡扯"><span class="nav-number">2.</span> <span class="nav-text">讨论与胡扯</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -620,6 +680,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
