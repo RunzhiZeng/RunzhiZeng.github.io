@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="数论," />
+  <meta name="keywords" content="计算理论," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="写作目的最近要讨论大正数分解的量子算法，而讨论大整数分解算法需要一些相关的数论知识。本文将展示并证明这些相关的数论知识。 符号从一个集合$S$均匀选取一个元素:$a \leftarrow_R S$如果$S$有生成元$g$，那么从$S$中均匀抽样的等价描述是：$k \leftarrow \{1,…,|S|\},返回g^k$群G的阶:群的元素个数$|G|$元素$a$的阶:$min\{r | a^r =">
-<meta name="keywords" content="数论">
+<meta name="description" content="问题前年讨论计算理论时，遇到了一个这样的问题： 设$\overline{L}\in \mathcal{coNP}$，由定义知，存在非确定性图灵机$NTM_L$判定$L$，即$NTM_L(x)=1 \iff x\in L$ 现构造如下图灵机$NTM’_{coL}$ $NTM’_{coL}(x):$  如果$NTM_L(x)=1​$,则返回0. 否则返回1．  现在问题是$NTM’_{coL}$是否判">
+<meta name="keywords" content="计算理论">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Order finding与大整数分解">
-<meta property="og:url" content="https://runzhizeng.github.io/2017/10/11/Factoring,order-finding/index.html">
+<meta property="og:title" content="一个错误的NP=coNP证明：非确定性图灵机的输出取反">
+<meta property="og:url" content="https://runzhizeng.github.io/2018/04/24/NP与coNP/index.html">
 <meta property="og:site_name" content="润智的博客">
-<meta property="og:description" content="写作目的最近要讨论大正数分解的量子算法，而讨论大整数分解算法需要一些相关的数论知识。本文将展示并证明这些相关的数论知识。 符号从一个集合$S$均匀选取一个元素:$a \leftarrow_R S$如果$S$有生成元$g$，那么从$S$中均匀抽样的等价描述是：$k \leftarrow \{1,…,|S|\},返回g^k$群G的阶:群的元素个数$|G|$元素$a$的阶:$min\{r | a^r =">
+<meta property="og:description" content="问题前年讨论计算理论时，遇到了一个这样的问题： 设$\overline{L}\in \mathcal{coNP}$，由定义知，存在非确定性图灵机$NTM_L$判定$L$，即$NTM_L(x)=1 \iff x\in L$ 现构造如下图灵机$NTM’_{coL}$ $NTM’_{coL}(x):$  如果$NTM_L(x)=1​$,则返回0. 否则返回1．  现在问题是$NTM’_{coL}$是否判">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-18T06:54:44.204Z">
+<meta property="og:updated_time" content="2018-04-24T02:01:14.790Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Order finding与大整数分解">
-<meta name="twitter:description" content="写作目的最近要讨论大正数分解的量子算法，而讨论大整数分解算法需要一些相关的数论知识。本文将展示并证明这些相关的数论知识。 符号从一个集合$S$均匀选取一个元素:$a \leftarrow_R S$如果$S$有生成元$g$，那么从$S$中均匀抽样的等价描述是：$k \leftarrow \{1,…,|S|\},返回g^k$群G的阶:群的元素个数$|G|$元素$a$的阶:$min\{r | a^r =">
+<meta name="twitter:title" content="一个错误的NP=coNP证明：非确定性图灵机的输出取反">
+<meta name="twitter:description" content="问题前年讨论计算理论时，遇到了一个这样的问题： 设$\overline{L}\in \mathcal{coNP}$，由定义知，存在非确定性图灵机$NTM_L$判定$L$，即$NTM_L(x)=1 \iff x\in L$ 现构造如下图灵机$NTM’_{coL}$ $NTM’_{coL}(x):$  如果$NTM_L(x)=1​$,则返回0. 否则返回1．  现在问题是$NTM’_{coL}$是否判">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://runzhizeng.github.io/2017/10/11/Factoring,order-finding/"/>
+  <link rel="canonical" href="https://runzhizeng.github.io/2018/04/24/NP与coNP/"/>
 
 
 
 
 
-  <title>Order finding与大整数分解 | 润智的博客</title>
+  <title>一个错误的NP=coNP证明：非确定性图灵机的输出取反 | 润智的博客</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://runzhizeng.github.io/2017/10/11/Factoring,order-finding/">
+    <link itemprop="mainEntityOfPage" href="https://runzhizeng.github.io/2018/04/24/NP与coNP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="润智">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Order finding与大整数分解</h1>
+          <h1 class="post-title" itemprop="name headline">一个错误的NP=coNP证明：非确定性图灵机的输出取反</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-11T00:00:00+08:00">
-                2017-10-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-24T10:01:14+08:00">
+                2018-04-24
               </time>
             
 
@@ -320,67 +320,46 @@
       
 
       
-        <h2 id="写作目的"><a href="#写作目的" class="headerlink" title="写作目的"></a>写作目的</h2><p>最近要讨论大正数分解的量子算法，而讨论大整数分解算法需要一些相关的数论知识。本文将展示并证明这些相关的数论知识。</p>
-<h2 id="符号"><a href="#符号" class="headerlink" title="符号"></a>符号</h2><p>从一个集合$S$均匀选取一个元素:$a \leftarrow_R S$<br>如果$S$有生成元$g$，那么从$S$中均匀抽样的等价描述是：$k \leftarrow \{1,…,|S|\},返回g^k$<br><strong>群G的阶</strong>:群的元素个数$|G|$<br><strong>元素$a$的阶</strong>:$min\{r | a^r = 1_G\}$,$1_G$是$G$的单位元</p>
-<h2 id="基本引理"><a href="#基本引理" class="headerlink" title="基本引理"></a>基本引理</h2><p><strong>引理0. 充分事件和必要事件的概率</strong><br>设事件$B$为$A$的必要事件（即$A \rightarrow B$）<br>则有$ Pr\{A\} \le Pr\{B\}$</p>
-<p><strong>引理1. 元素阶的最小性</strong><br>设$g \in G$的阶为$r$，则$\forall t,g^t=1_G$，有$r | t$。</p>
-<p><strong>引理2. 素数幂群是循环群</strong><br>设$p$是一个奇素数,$\alpha$是一个正整数。<br>则 $\mathbb{Z}^*_{p^\alpha}$是循环群（存在生成元）</p>
-<p><strong>引理3. 中国剩余定理</strong><br>设$m_1,…,m_n$是正整数<strong>并且它们两两互素。</strong><br>则如下的方程组:</p>
-<script type="math/tex; mode=display">
-\begin{equation}
-
-x =a_1 (mod \ m_1) \\
-
-x =a_2 (mod \ m_2) \\
-
-...... \\
-
-x =a_n (mod \ m_n)
-
-\end{equation}</script><p>在模$N=m_1 \cdots m_n$下有<strong>唯一解</strong>。</p>
-<p>存在多项式时间算法求解中国剩余定理中的唯一解。</p>
-<h2 id="数论背景知识"><a href="#数论背景知识" class="headerlink" title="数论背景知识"></a>数论背景知识</h2><p><strong>定理1. 平方差与大整数分解</strong><br>设$N$为一个合数，且$x$是$ x^2 = 1 (mod \ N)$的<strong>非平凡解</strong>（即$x \neq 1 且 x \neq -1 (mod \ N)$）<br>那么$gcd(x-1,N)$和$gcd(x+1,N)$中至少有一个是$N$的<strong>非平凡因子</strong>。</p>
-<blockquote>
-<p>证明:<br>$ x^2 = 1 (mod \ N) $<br>$\Rightarrow  N | (x^2-1)  $<br>$\Rightarrow gcd(x+1,N) \neq 1$或$gcd(x-1,N) \neq 1$<br>(这里解释一下第二个推导箭头:因为$N \nmid (x+1)$且$N \nmid (x-1)$。假设$gcd(x+1,N) = 1$且$gcd(x-1,N) = 1$,由这个假设可以推出$N \nmid (x^2-1)$，矛盾。所以$gcd(x+1,N) \neq 1$或$gcd(x-1,N) \neq 1$</p>
-</blockquote>
-<p>另外，如果有满足定理1的$x$,那么找出$N$的一个非平凡因子,即计算$gcd(x-1,N)$和$gcd(x+1,N)$,只需要$O(log(N))$的时间。</p>
-<p><strong>定理2. 群$Z^*_{p^\alpha}$中偶数阶元素和奇数阶元素至少各分一半</strong><br>设$p$为一个奇素数,$\alpha$为一个正整数.<br>设$d$为使$2^d$满足$ 2^d| \varphi(p^\alpha)$的最大的值（即$2^{d+1} \nmid (\varphi(p^\alpha)$）<br>则,<strong>阶可被$2^d$整除的元素与阶不可被$2^d$整除的元素个数各分一半。</strong></p>
-<blockquote>
-<p>证明:<br>因为$\varphi(p^\alpha)$是一个偶数，所以$d \ge 1$。<br>由<strong>引理2</strong>，$\mathbb{Z}^{*}_{p^{\alpha}}$存在生成元$g:g^{\varphi(p^\alpha)}=1_G$,设$k \in \{1,…,\varphi(p^\alpha)\}$。<br>设$r$为$g^k$的阶,即$(g^k)^r = 1_G$.由<strong>引理1</strong>,有$\varphi(p^\alpha)|kr$<br>若$k$是一个偶数:<br>$ (g^k)^{\varphi(p^\alpha)/2} $<br>$= (g^{\varphi(p^\alpha)})^{k/2}$<br>$= 1^{k/2}$<br>$= 1 (mod \ p^\alpha)$<br>$\Rightarrow r | \varphi(p^\alpha)/2$<br>$\Rightarrow 2^d \nmid r$　　　　　　　　（如果$2^d|r$,则$2^{d+1}|\varphi(p^\alpha)$,违反$d$的最大性)</p>
-<p>若$k$是一个奇数<br>$\varphi(p^\alpha) | kr$<br>$\Rightarrow  2^d | kr$　　　　　　　　　　　　　　　　　　　　　　　（由$2^d | \varphi(p^\alpha)$）<br>$\Rightarrow 2^d | r$　　　　　　　　　　　　　　　　　　　　　　　　（由$k$为奇数）</p>
-<p>由于$k \in \{1,…,\varphi(p^\alpha) \}$（该集合元素个数为$\varphi(p^\alpha)$），而$\varphi(p^\alpha)$是一个偶数，所以阶可被$2^d$整除的元素与阶不可被$2^d$整除的元素个数各分一半。</p>
-</blockquote>
-<p><strong>命题1</strong><br>$p_j$为素数,$\alpha_j$为正整数，设$x_j \leftarrow_R Z^{*}_{p^{\alpha_j}_j}$,其阶为$r_j$.<br>设$d$为使$2^d$满足$ 2^d| \varphi(p_j^{\alpha_j})$的最大的值（即$2^{d+1} \nmid (\varphi(p^\alpha)$）<br><strong>如果$r_j | r$且$r$是个偶数，并且有$x^{r/2}_j = -1 (mod \ {p^{\alpha_j}_j})$,则 $2^d|r_j$</strong></p>
-<p>该命题在定理3中被使用到.</p>
-<blockquote>
-<p>证明:<br>由<strong>引理2</strong>，有生成元$g^{k_j}_j = x_j$.　　$(g^{k_j}_j)^{r_j} = 1 (mod \ p^{\alpha_j}_j)$<br>$k_j$有两种情况:<br><strong>case 1:</strong> $k_j$为奇数,<strong>类似于定理2的证明</strong>,有$2^d| r_j$<br><strong>case 2:</strong> $k_j$为偶数<br>$x^{r/2}_j = -1 (mod \ p^{\alpha_j}_j)$<br>$\Rightarrow (g^{k_j}_j)^{r/2} = -1 \ne 1  (mod \ p^{\alpha_j}_j)$<br>$\Rightarrow \varphi(p^{\alpha_j}_j) \nmid \frac{rk_j}{2} = r \cdot \frac{k_j}{2}$<br>又由$r_j | \varphi(p^{\alpha_j}_j) ，有r_j \nmid r \cdot \frac{k_j}{2}$<br>但由有$r_j | r$应有$r_j | r \cdot \frac{k_j}{2}$<br>出现矛盾，即$k_j$不会是偶数，即有$2^d| r_j$</p>
-</blockquote>
-<p><strong>定理3. 偶数阶元素大概率是非平凡因子</strong><br>设$N = p^{\alpha_1}_1\cdots p^{\alpha_m}_m$（整数素因子分解）且<strong>$N$为一个奇合数</strong>。<br>设$x \leftarrow_R \mathbb{Z}^*_N$，$r$是$x$的阶（$mod \ N$）。<br>则有<script type="math/tex">Pr\{ \text{ $r$是偶数且$x^{r/2} \ne -1 (mod \ N)$} \} \ge 1 - \frac{1}{2^m}</script></p>
-<blockquote>
-<p>证明:<br>即证<script type="math/tex">Pr\{ \text{ $r$是奇数 或 $r$是偶数且$x^{r/2} = -1 (mod \ N)$} \} \le \frac{1}{2^m}</script></p>
-<p>由<strong>中国剩余定理，从$\mathbb{Z}^{*}_N$均匀抽样出一个$x$等价于:依次从$\mathbb{Z}^*_{p^{\alpha_j}_j}$均匀抽独立样出$x_j$(j = 1,…,m)，用中国剩余定理对应的算法求出$x(x \equiv x_j (mod \ {p^{\alpha_j}_j}), j=1,…,m)$</strong>。</p>
-<p><strong>对于任意的$j$</strong>(注意$j$的任意性!),设$r_j$为$x$在$\mathbb{Z}^*_{p^{\alpha_j}_j}$上的阶，当然它也是$x_j$在该群上的阶。由于$p^{\alpha_j}_j | N | (x^r-1)$，所以有$x^r \equiv 1 (mod \ p^{\alpha_j}_j)$，即有$r_j | r$。<br>$r_j$有两种情况:</p>
-<p><strong>case 1</strong>:当$r$是一个偶数且$x^{r/2} = -1 (mod \ N)$:<br>$x^{r/2} = -1 (mod \ N)$<br>设$d$为使$2^d$满足$ 2^d| \varphi(p_j^{\alpha_j})$的最大的值（即$2^{d+1} \nmid (\varphi(p^\alpha)$）<br>使用<strong>命题1</strong>,有$2^d|r_j$,在$x_j$是均匀抽取的情况下，该发生概率为$\frac{1}{2}$</p>
-<p><strong>case 2</strong>:当$r$是一个奇数:<br>$2^{d_j} | r_j | r$<br>　$\Rightarrow$ $r_j$是一个奇数.<strong>由定理2</strong>,在$x_j$均匀抽取的情况下,该情况发生的概率为$\frac{1}{2}$</p>
-<p>综合以上两个case,由$j$的任意性与各$x_j$的独立性和<strong>引理0</strong>：有<script type="math/tex">Pr\{ \text{ $r$是奇数 或 $r$是偶数且$x^{r/2} = -1 (mod \ N)$} \} \le \frac{1}{2^m}</script></p>
-</blockquote>
-<p><strong>Note</strong>:看不懂证明没关系，记住每个定理的描述。</p>
-<h2 id="Order-finding-与-Factoring"><a href="#Order-finding-与-Factoring" class="headerlink" title="Order finding 与 Factoring"></a>Order finding 与 Factoring</h2><p>(以下全设$N$为奇合数)<br><strong>Factoring</strong>:给定正整数$N$,求$N$的素因子分解。<br><strong>Order inding</strong>:给定$Z^*_N$中的一个元素$a$，求解$a$的order.</p>
-<p>为什么Order finding与Factoring会有关系？因为如果可以多项式时间内求解Order finding问题，则可以带概率地在多项式时间内求解Factoring。</p>
-<p>Factoring问题可规约为整数拆分问题:<br><strong>整数拆分</strong>:求解$N_1,N_2 &lt; N$使得$N = N_1 \cdot N_2$</p>
-<p>Factoring问题可以规约为$O(\log{N})$个整数拆分问题。(为什么渐进界是$\log{N}$？请简单思考一下)而且该规约是确定性规约：即存在确定性多项式时间算法求解整数拆分，则存在确定性多项式时间算法求解Factoring。</p>
-<p>而根据上面的一系列数论背景，<strong>如果我们能高效地求解order finding</strong>,那么我们可以以一个大的概率（参考定理3）求解整数拆分问题。所以在这里，Factoring的关键是求解Order finding。综合前面面描述的定理，可以得到以下求解整数拆分问题算法的一个高层次描述（素因子分解算法的描述简单，略）：</p>
-<blockquote>
-<p>输入:大整数$N$<br>输出:对$N$的拆分</p>
+        <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>前年讨论计算理论时，遇到了一个这样的问题：</p>
+<p>设$\overline{L}\in \mathcal{coNP}$，由定义知，存在非确定性图灵机$NTM_L$判定$L$，即$NTM_L(x)=1 \iff x\in L$</p>
+<p>现构造如下图灵机$NTM’_{coL}$</p>
+<p>$NTM’_{coL}(x):$</p>
 <ol>
-<li>判断$N$是否是一个素数power$(N = p^\alpha,p为素数)$,如果是使用相应算法返回$p$</li>
-<li>$x \leftarrow_R \mathbb{Z}_N$.如果$gcd(N,x) &gt; 1$，返回相应的拆分</li>
-<li><strong>使用order finding算法求解$x$的order $r$</strong></li>
-<li>如果$r$为偶数，则判断$gcd(N,x^{r/2}-1)和gcd(N,x^{r/2}+1)$哪个是$N$的非平凡因子并返回。否则，算法失败。</li>
+<li>如果$NTM_L(x)=1​$,则返回0.</li>
+<li>否则返回1．</li>
 </ol>
-</blockquote>
-<p>由定理三，以上算法失败的概率大于等于50%。</p>
-<p>求解大整数分解量子算法唯一的量子部分就在于Order finding。其它的整数拆分等步骤都是经典算法。而之所以大整数分解在量子模型下存在高效算法是因为存在求解Order finding的多项式时间量子算法。</p>
+<p><strong>现在问题是$NTM’_{coL}$是否判定了$\overline{L}$。</strong></p>
+<p>显然问题的答案是“否”，以下有三种解释。</p>
+<p><strong>解释一</strong>：</p>
+<p>如果$NTM’_{coL}$判定了$\overline{L}$，我们这不解了个开放性难题$(NP =_? coNP)$吗？显然答案是否定的。</p>
+<p><strong>解释二：</strong></p>
+<p>可以用$NP$另外的定义进行解释，$NP$类除了用非确定性图灵机来描述之外，还可以用<strong>可高效验证</strong>这一概念来描述。该解释较直观，请自行查阅相关定义，这里不作详细的解释了。</p>
+<p><strong>解释三：</strong></p>
+<p>该解释从$NTM$本身的性质来指出$NTM’_{coL}$的问题。显然对于某些强迫症患者（比如我）来说，这种解释更好。</p>
+<p>实际上”如果$NTM_L(x)=1$,则返回0.”是一种不”自然”的操作行为，为什么？很简单，$NTM$是一种理想化的模型，它（暂时）没有现实对应物（并行计算和这玩意一点关系都没有），将$NTM$作为子程序进行调用其实是一种比较奇怪的行为。当然没有任何规则说不能调用$NTM$。显然调用$NTM$的父程序本身就是一个$NTM$。需要注意，<strong>子$NTM$的所有计算分支都分别被包含在父$NTM$的计算分支中。</strong></p>
+<p>当子$NTM$返回1的时候，实际上是指：<strong>子$NTM$的某条计算分支返回了1</strong>，而其他的计算分支我们并不知道会如何（可能返回０或者loop）。当然<strong>这条计算分支包含在父$NTM$中某条计算分支中</strong>，因此此时父$NTM$在该计算分支中只有三种选择，要么走向loop，要么返回0，要么返回1（此时将导致整个父$NTM$返回1）。</p>
+<p>现回到$NTM’_{coL}$的构造。当$NTM_{L}(x)=1$，此时$NTM’_{coL}$返回0，这当然没问题，但是要注意，<strong>这只是该计算分支返回0并停止</strong>而已，其他分支呢？不知道。要所有的分支都是返回0，才能使得$NTM’_{coL}(x)$返回0，而根据$NTM’_{coL}$的构造，显然我们无法确保其它分支也是0。比如说，$NTM_{L}(x)$的某条计算路径返回的是0,那么$NTM’_{coL}$在其对应的计算分支要做什么？返回1吗？那肯定不行，因为这将导致$NTM’_{coL}$返回1，这样的话$NTM’_{coL}$必然无法判定$\overline{L}$。返回0吗？那这样做也没有意义。</p>
+<p>其实归根结底，”如果$NTM_{L}(x)=1$,则返回0.”这一做法是不可行的，这做法忽视了非确定性图灵机返回值的定义。之所以我们会构造出$NTM’_{coL}$这样的图灵机，只是因为我们的思维还停在$DTM$的运作方式上。当然，我们可以用这个“有问题”的方法来证明$\mathcal{P}=\mathcal{coP}$，具体我就不再论述了。</p>
+<hr>
+<p>(2018-04-24更新)</p>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>设$SAT=\{\phi | $$\phi $是可满足的$\}$，则$coSAT=\{\phi|\phi$不可满足$\}$。显然$SAT\in \mathcal{NP}$（公式对应可满足的赋值即是NP-proof），因此$coSAT \in \mathcal{coNP}$。现设非确定性图灵机$NTM_{SAT}$判定$SAT$。再构造“问题”一节中类似的非确定性图灵机。</p>
+<p>$NTM’_{coSAT}(x):$</p>
+<ol>
+<li>如果$NTM_{SAT}(x)=1$,则返回0.</li>
+<li>否则返回1．</li>
+</ol>
+<p>按照该定义，$NTM’_{coSAT}(x)$所有的计算分支仅在$NTM_{SAT}(x)$计算分支的基础上将结果取反：</p>
+<ol>
+<li>若$NTM_{SAT}(x)$在某条计算分支上返回1，则$NTM’_{coSAT}(x)$在此计算分支上返回0。注意，”$NTM_{SAT}(x)$在某条计算分支上返回1”意味着$x$是可满足的，这时候理应$NTM’_{coSAT}(x)$整个停机并返回0啊？注意，由非确定性图灵机的定义，此时只是$NTM’_{coSAT}(x)$只是在这条计算分支上返回0，其他分支还在继续计算。除非$NTM_{SAT}(x)$所有的计算分支都返回1，否则$NTM’_{coSAT}(x)$最终会返回什么我们是不知道的。</li>
+<li>若$NTM_{SAT}(x)$在某条计算分支上返回0，那$NTM’_{coSAT}(x)$在此计算分支上要怎么做？似乎$NTM’_{coSAT}(x)$怎么做都不对。<strong>“$NTM_{SAT}(x)$在某条计算分支上返回0”既不能说明$x$是可满足也不能说明不可满足</strong>，这意味着$NTM’_{coSAT}(x)$在该分支中任意的决策都是“错误”的。</li>
+</ol>
+<p>总之，$NTM’_{coSAT}$无法判定$coSAT$，因为该图灵机要么会接受一些可满足的公式，要么会拒绝一些不可满足的公式。</p>
+<hr>
+<h3 id="讨论与胡扯"><a href="#讨论与胡扯" class="headerlink" title="讨论与胡扯"></a>讨论与胡扯</h3><p>关于$\mathcal{NP}$的定义，一些教材偏向于用<strong>可高效验证</strong>这一概念来刻画$\mathcal{NP}$，这样较好地避免了用非确定性图灵机定义所可能带来的理解上的问题。</p>
+<p>非确定性图灵机$NTM$的定义非常奇怪。比如，$NTM(x)=1$指某条计算分支返回1，$NTM(x)$返回0指所有计算分支返回0。其实这个定义就有点扯：</p>
+<p>“$NTM(x)=1$指某条计算分支返回1”这一说法尝试告诉我们，我们可以忽略其他计算分支不管，当某条分支停下并返回1那么就是整个$NTM$返回1。这就奇怪了！其他计算分支怎么会知道有某条计算分支返回1？好吧，$NTM$是一个整体，也许是这样：所有计算分支就像是在比谁先解题一样，率先返回1（先解出题）的那条计算分支控制了$NTM$，然后它强行杀掉所有其他的分支…..</p>
+<p>“$NTM(x)$返回0指所有计算分支返回0”这一说法更是怪了～因为这一说法好像在告诉我们，$NTM$中有个裁判，它看着所有的计算分支的解题过程，当它发现所有计算分支都解不出来（返回0）后，就按下$NTM$”返回0”的按钮，直接终结比赛….</p>
+<p>当然$NTM$本身就是一个抽象、理想的计算模型，不能以常理论。但既然不能以常理论，那我们就很难去用常理的方式去解释它并使用它。无论如何，我建议是：初学计算理论的人最好用<strong>可高效验证</strong>定义来接触$\mathcal{NP}$。</p>
 
       
     </div>
@@ -398,7 +377,7 @@ x =a_n (mod \ m_n)
       
         <div class="post-tags">
           
-            <a href="/tags/数论/" rel="tag"># 数论</a>
+            <a href="/tags/计算理论/" rel="tag"># 计算理论</a>
           
         </div>
       
@@ -411,8 +390,8 @@ x =a_n (mod \ m_n)
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/07/进程内存修改小实例/" rel="next" title="进程内容修改小实例">
-                <i class="fa fa-chevron-left"></i> 进程内容修改小实例
+              <a href="/2018/04/19/毕业答辩/" rel="next" title="本科毕业答辩">
+                <i class="fa fa-chevron-left"></i> 本科毕业答辩
               </a>
             
           </div>
@@ -420,10 +399,6 @@ x =a_n (mod \ m_n)
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/18/P vs NP, PF vs PC/" rel="prev" title="搜索问题与判定问题、P vs NP 与 PC vs PF">
-                搜索问题与判定问题、P vs NP 与 PC vs PF <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -574,7 +549,7 @@ x =a_n (mod \ m_n)
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写作目的"><span class="nav-number">1.</span> <span class="nav-text">写作目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#符号"><span class="nav-number">2.</span> <span class="nav-text">符号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本引理"><span class="nav-number">3.</span> <span class="nav-text">基本引理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数论背景知识"><span class="nav-number">4.</span> <span class="nav-text">数论背景知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Order-finding-与-Factoring"><span class="nav-number">5.</span> <span class="nav-text">Order finding 与 Factoring</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子"><span class="nav-number">2.</span> <span class="nav-text">例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#讨论与胡扯"><span class="nav-number">3.</span> <span class="nav-text">讨论与胡扯</span></a></li></ol></div>
             
 
           </div>
