@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="润智的博客">
 <meta property="og:description" content="在实现公钥密码学协议的过程中，常常需要用到一个素数阶的群。本文讲述如何高效快速生成一个素数阶(整数子)群。(不需要穷举遍历寻找生成元) $x$以Elgamal加密为例子：要保证ELGamal加密的可证明安全性,必须要求其在素数阶群上运行。因此在实现ELGamal协议的时候，需要生成一个素数阶的群。 生成素数阶群的时候，我们常常需要用到$Z^*_p$,其中$p$为素数。注意,$Z^*_p$的阶并不是">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-26T10:09:04.267Z">
+<meta property="og:updated_time" content="2018-04-26T10:12:19.498Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="生成素数阶群">
 <meta name="twitter:description" content="在实现公钥密码学协议的过程中，常常需要用到一个素数阶的群。本文讲述如何高效快速生成一个素数阶(整数子)群。(不需要穷举遍历寻找生成元) $x$以Elgamal加密为例子：要保证ELGamal加密的可证明安全性,必须要求其在素数阶群上运行。因此在实现ELGamal协议的时候，需要生成一个素数阶的群。 生成素数阶群的时候，我们常常需要用到$Z^*_p$,其中$p$为素数。注意,$Z^*_p$的阶并不是">
@@ -325,7 +325,7 @@
 <p>生成素数阶群的时候，我们常常需要用到$Z^*_p$,其中$p$为素数。注意,$Z^*_p$的阶并不是$p$，而是$\phi(p)=p-1$。我们可以从某些特殊的$Z^*_p$中提取出素数阶的子群。先看以下定理:</p>
 <p><strong>定理1.(拉格朗日定理)</strong> 设$G,S$为两个群，若$S$是$G$的子群，则$|G|$可被$|S|$整除。</p>
 <p>上面的定理给了我们一个提示:由于$|Z^*_p|=p-1$(必然是个偶数),那么$Z^*_p$中的子群的阶必然会是$p-1$的某个因子。我们可以使$p-1$有一定的结构使得它有个素数子群，以下定理阐述了这种“结构”：</p>
-<p><strong>定理2:</strong>设$p = rq+1$,其中$p,q$为素数.$r$为某个整数。那么:</p>
+<p><strong>定理2. </strong>设$p = rq+1$,其中$p,q$为素数.$r$为某个整数。那么:</p>
 <script type="math/tex; mode=display">
 G:=\{ h^r (mod \ p) | h \in Z^*_p\}</script><p>是一个$Z^*_p$的子群并且它的阶为$q$.</p>
 <p>定理2的证明使用了如下的引理：</p>
