@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="润智的博客">
 <meta property="og:description" content="在直观解释 P v.s. NP问题 时，人们常常会这样类比“寻找解是否难于验证解？”。其实严格上讲，P v.s. NP问题与这个说法的联系并不直接，因为这个说法在一定程度上混淆了搜索问题(search problem)和判定性问题(decision problem)。有一定计算理论基础的人会知道，P v.s. NP问题是针对判定性问题的，而“寻找解和验证解是否一样简单？”这个问题是针对搜索性问题。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-20T13:51:20.578Z">
+<meta property="og:updated_time" content="2018-05-06T07:00:17.599Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搜索问题与判定问题、P vs NP 与 PC vs PF">
 <meta name="twitter:description" content="在直观解释 P v.s. NP问题 时，人们常常会这样类比“寻找解是否难于验证解？”。其实严格上讲，P v.s. NP问题与这个说法的联系并不直接，因为这个说法在一定程度上混淆了搜索问题(search problem)和判定性问题(decision problem)。有一定计算理论基础的人会知道，P v.s. NP问题是针对判定性问题的，而“寻找解和验证解是否一样简单？”这个问题是针对搜索性问题。">
@@ -329,7 +329,7 @@
 <p>可以比较容易地去从以上两个形式化证明中挖掘出一定的直观，这里不做赘述。</p>
 <p>两种问题的复杂性有不一样的衡量方式。搜索问题关注于：寻找解与核实(check)解的正确性。而判定性问题专注于证明与验证：”证明$x$是否属于$S$ “与 “验证(verify)$x$属于$S$的证明是否正确”。注意这里的“核实”与“验证”含义并不一样。</p>
 <h2 id="两种问题的复杂性定义"><a href="#两种问题的复杂性定义" class="headerlink" title="两种问题的复杂性定义"></a>两种问题的复杂性定义</h2><p>在描述搜索性问题的复杂性时还需要用到多项式界定关系这一概念：</p>
-<p><strong>多项式界定的关系(polynomially bounded relations)</strong>:若关系$R\subseteq \{0,1\}^<em> \times \{0,1\}^</em>$满足：存在多项式$p$，对所有的$(x,y)\in R$都有$|y| \le p(|x|)$，则称$R$是多项式界定的。</p>
+<p><strong>多项式界定的关系(polynomially bounded relations)</strong>:若关系$R\subseteq \{0,1\}^* \times \{0,1\}^*$满足：存在多项式$p$，对所有的$(x,y)\in R$都有$|y| \le p(|x|)$，则称$R$是多项式界定的。</p>
 <blockquote>
 <p>​其中$|x|$指定对象$x$的描述长度，因为一般是用比特串描述对象，$|x|$指描述$x$所用的比特数。<br>（关于描述的长度：任何一个对象都有无穷多种描述，比如描述我你可用“高大威猛帅气….”这样的话，但也可以描述为“华南师范大学学号2014210<em>**</em>”。。。一般$|x|$指最短的能描述$x$的比特串的长度）</p>
 </blockquote>
@@ -340,7 +340,7 @@
 <p><strong>“可高效核实”类——PC</strong></p>
 <p>如果存在多项式时间算法$A$，对于任意的$(x,y)$，$A(x,y)=1$当且仅当$(x,y)\in R$，则$R$上的搜索问题是<strong>可高效核实</strong>的。</p>
 <p>所有的可高效核实的多项式界定关系$R$（对应的搜索问题）构成一个集合，该集合称为<strong>复杂性类$\mathcal{PC}$</strong>(polynomial-time check)。</p>
-<h3 id="判定性问题的复杂性定义"><a href="#判定性问题的复杂性定义" class="headerlink" title="判定性问题的复杂性定义"></a>判定性问题的复杂性定义</h3><p>记$S \subseteq {0,1}^*$为判定性问题对应的集合。</p>
+<h3 id="判定性问题的复杂性定义"><a href="#判定性问题的复杂性定义" class="headerlink" title="判定性问题的复杂性定义"></a>判定性问题的复杂性定义</h3><p>记$S \subseteq \{0,1\}^*$为判定性问题对应的集合。</p>
 <p><strong>“可高效求解”类——P</strong></p>
 <p>如果存在多项式时间算法$A$满足:$A(x)=1 \iff x\in S$，则称$S$（对应的判定性问题）是可高效求解的。由于对于在判定性问题的语境中，“求解”意味着“证明成员关系”，因此也可以称$S$是”可高效证明“的，但一般“可高效求解”更通用一些。</p>
 <p>所有的可高效求解的判定性问题构成集合$\mathcal{P}$。</p>
