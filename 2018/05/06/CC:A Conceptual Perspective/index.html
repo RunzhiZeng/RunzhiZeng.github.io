@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="计算理论," />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="个人信息 “润智”是我的名字 来自广东深圳 华南师范大学计算机学院　2014级本科生　2018级研究生 研究兴趣：密码学，量子计算，计算理论，…. 业余兴趣：看书，思考，探讨，唱歌，篮球，…  博客定位 分享、交流知识与idea 聊聊是非，吐吐苦水">
-<meta property="og:type" content="website">
-<meta property="og:title" content="关于我">
-<meta property="og:url" content="https://runzhizeng.github.io/about/index.html">
+<meta name="description" content="Two formulations of P-vs-NP question Search problem vs Decision problem: definition and relation two classes of Search problem: $\mathcal{PC}$ and $\mathcal{PF}$, “Easy to find solutions” vs “Easy to">
+<meta name="keywords" content="计算理论">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《CC:A Conceptual Perspective》Some notes of Chapter2">
+<meta property="og:url" content="https://runzhizeng.github.io/2018/05/06/CC:A Conceptual Perspective/index.html">
 <meta property="og:site_name" content="润智的博客">
-<meta property="og:description" content="个人信息 “润智”是我的名字 来自广东深圳 华南师范大学计算机学院　2014级本科生　2018级研究生 研究兴趣：密码学，量子计算，计算理论，…. 业余兴趣：看书，思考，探讨，唱歌，篮球，…  博客定位 分享、交流知识与idea 聊聊是非，吐吐苦水">
+<meta property="og:description" content="Two formulations of P-vs-NP question Search problem vs Decision problem: definition and relation two classes of Search problem: $\mathcal{PC}$ and $\mathcal{PF}$, “Easy to find solutions” vs “Easy to">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-20T04:14:23.438Z">
+<meta property="og:updated_time" content="2018-05-07T09:16:22.361Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于我">
-<meta name="twitter:description" content="个人信息 “润智”是我的名字 来自广东深圳 华南师范大学计算机学院　2014级本科生　2018级研究生 研究兴趣：密码学，量子计算，计算理论，…. 业余兴趣：看书，思考，探讨，唱歌，篮球，…  博客定位 分享、交流知识与idea 聊聊是非，吐吐苦水">
+<meta name="twitter:title" content="《CC:A Conceptual Perspective》Some notes of Chapter2">
+<meta name="twitter:description" content="Two formulations of P-vs-NP question Search problem vs Decision problem: definition and relation two classes of Search problem: $\mathcal{PC}$ and $\mathcal{PF}$, “Easy to find solutions” vs “Easy to">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://runzhizeng.github.io/about/"/>
+  <link rel="canonical" href="https://runzhizeng.github.io/2018/05/06/CC:A Conceptual Perspective/"/>
 
 
 
 
 
-  <title>关于我 | 润智的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>《CC:A Conceptual Perspective》Some notes of Chapter2 | 润智的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -240,44 +241,234 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://runzhizeng.github.io/2018/05/06/CC:A Conceptual Perspective/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="润智">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="润智的博客">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">关于我</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <h3 id="个人信息"><a href="#个人信息" class="headerlink" title="个人信息"></a>个人信息</h3><ul>
-<li>“润智”是我的名字</li>
-<li>来自广东深圳</li>
-<li>华南师范大学计算机学院　2014级本科生　2018级研究生</li>
-<li>研究兴趣：密码学，量子计算，计算理论，….</li>
-<li>业余兴趣：看书，思考，探讨，唱歌，篮球，…</li>
+          <h1 class="post-title" itemprop="name headline">《CC:A Conceptual Perspective》Some notes of Chapter2</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-06T00:00:00+08:00">
+                2018-05-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Two-formulations-of-P-vs-NP-question"><a href="#Two-formulations-of-P-vs-NP-question" class="headerlink" title="Two formulations of P-vs-NP question"></a>Two formulations of P-vs-NP question</h3><ul>
+<li>Search problem vs Decision problem: definition and relation</li>
+<li>two classes of Search problem: $\mathcal{PC}$ and $\mathcal{PF}$, “Easy to find solutions” vs “Easy to check the correctness of solutions”.</li>
+<li>two classes of Decision problem: $\mathcal{P}$ and $\mathcal{NP}$.  “Easy to prove” vs “Easy to verify the proof/witness”</li>
+<li><strong>Important: $\mathcal{NP=P} \iff \mathcal{PC \subseteq PF}$ </strong><ul>
+<li>There are some problems in $\mathcal{PF}$ that are not in $\mathcal{PC}$! That is, there are some problems that are easy to find solutions but hard to check the correctness of given solutions. </li>
+<li><a href="https://runzhizeng.github.io/2018/04/18/P%20vs%20NP,%20PF%20vs%20PC/">$\mathcal{NP=P} \iff \mathcal{PC \subseteq PF}$</a></li>
 </ul>
-<h3 id="博客定位"><a href="#博客定位" class="headerlink" title="博客定位"></a>博客定位</h3><ul>
-<li>分享、交流知识与idea</li>
-<li>聊聊是非，吐吐苦水</li>
+</li>
+<li>Another definition of $\mathcal{NP}$: non-deterministic polynomial-time Turing machine; NP-proof system and NTM.</li>
+</ul>
+<h3 id="Reductions"><a href="#Reductions" class="headerlink" title="Reductions"></a>Reductions</h3><ul>
+<li>Cook-reduction: Using oracle</li>
+<li>Karp-reduction: <ul>
+<li><em>A poly-time computable function f is  called a</em> Karp-reduction of $S$ to $S’$ <em>if, for every $x$,it holds that $x \in S$ iff $f(x)\in S’$</em>.</li>
+<li>For decision problem; Transformation of problem instance.</li>
+</ul>
+</li>
+<li>Levin-reduction:<ul>
+<li><em>A pair of poly-time computable functions, f and g, is called a Levin-reduction of R to R’ if:</em><ul>
+<li><em>f is a Karp-reduction of $S_R=\{x:\exists y \text{ s.t. } (x,y)\in R \}$ to $S_{R’}=\{x’:\exists y’ \text{ s.t. }(x’,y’)\in R’\}$</em></li>
+<li><em>for every</em> $x\in S_R$ <em>and</em> $y’\in R’(f(x))$ <em>it holds that</em> $(x,g(x,y’)) \in R$,<em>where</em> $R’(x’)=\{y’ : (x’,y’)\in R’\}$</li>
+</ul>
+</li>
+<li>For search problem; $f$ transforms the problem instance (and preserves the existence of solutions), $g$ transfroms the solutions.</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Computationally equivalent(ce): two <em>problems</em> are educible to one another(not class!)<ul>
+<li>Finding a “maximization” is computationally equivalent to finding a solution that excceding a threshold(but may not in the same class).</li>
+</ul>
+</li>
+<li>Self-Reducibility of Search Problems: “$R$ is efficiently solvable” $\approx_{ce}$ “$S_R$ is efficiently solvable($S_R = \{x: \exists y $ s.t. $(x,y)\in R\}$)”<ul>
+<li>An important set:$S’_R=\{(x,y’): \exists y’ $ s.t $(x,y’y’’)\in R\}$; $S’_R$ relates $R$ to $S_R$( for some $R$)</li>
+<li>if $R \in NPC$, $R \rightarrow_r S’_R \rightarrow_r S_R$</li>
+</ul>
+</li>
+</ul>
+<h3 id="NP-Completeness"><a href="#NP-Completeness" class="headerlink" title="NP-Completeness"></a>NP-Completeness</h3><ul>
+<li>NPC: <ul>
+<li>Karp reduction</li>
+<li>NP + NP hard</li>
+</ul>
+</li>
+<li><strong>Important:</strong> NPC (decision) problem exists; Cook theorem<ul>
+<li>“Encoding NP problem”:<ul>
+<li>$R_u=\{(\langle M,x,1^t\rangle,y) | M$ accepts $(x,y)$ in $t$ steps $\}$</li>
+<li>$S_u=\{\bar{x}=\langle M,x,1^t \rangle | \exists y$ s.t. $(\bar{x},y) \in R_u \}$</li>
+<li>$S_u \in NP$: decide $\bar{x} \in S_u$ using Universal TM.</li>
+<li>$x \rightarrow f(x):=\langle M_R ,x,1^{t_R(|x|+p_R(|x|))}\rangle$: $f$ is poly-computable(Karp reduction)</li>
+</ul>
+</li>
+<li>Cook theorem: Encoding NP problem $S$ to SAT<ul>
+<li>problem instance $x$ of $S$ $\rightarrow  $ circuit $C_x$ s.t. $C_x(y)=1 \iff M_R$ accepts $(x,y)$ within $t_R(|x| + p_R(|x|))$ steps. ($R$ is the witness relation of $S$)</li>
+<li>$x \in S \iff \exists y\in{0,1}^{p_R(|x|)}$ s.t. $C_x(y)=1 (C_x \in CSAT)$</li>
+<li>$CSAT \rightarrow_r SAT$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>$NPI$: $NP \rightarrow_\text{spilt} \{P, NPI, NPC\}$(maybe)<ul>
+<li>$\mathcal{NP \ne P} \Rightarrow \exists T\in \mathcal{NP} \text{ \ }  \mathcal{P} $ s.t. some sets in $\mathcal{NP}$ are not Cook-reducible to $T$.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Three-Relatively-Advanced-Topics"><a href="#Three-Relatively-Advanced-Topics" class="headerlink" title="Three Relatively Advanced Topics"></a>Three Relatively Advanced Topics</h3><ul>
+<li>Promise problem: <ul>
+<li>Search problems with promise P: just solve the problem instances of P(for example, $P = S_R = \{x:\exists y \text{ s.t. } (x,y) \in R \}$; candid search problem)</li>
+<li>Decision problems with promise P: $P = S_{yes} \cup S_{no} $</li>
+<li>restriction of a computational problem to a subset of the instances.</li>
+<li>Avoiding promise problem; Efficiently recognizable…</li>
+</ul>
+</li>
+<li>Optimal search algorithms for NP:<ul>
+<li><strong>Th 2.33:</strong> There exists an <em>optimal algorithm for solving the candid search problem of any relation in $\mathcal{PC}$</em>.</li>
+</ul>
+</li>
+<li>co$\mathcal{NP}$:<ul>
+<li>co$\mathcal{C}= \{\{0,1\}^* \text{\ } S: S \in \mathcal{C} \}$<ul>
+<li>$\mathcal{NP \ne coNP} \Rightarrow \exists$ set in $\mathcal{NP}$ can’t be reduced to $\mathcal{NP} \cap \mathcal{coNP} $                         (1)</li>
+<li>$\mathcal{NP \ne coNP} $ and $S \in \mathcal{NPC}$  $\Rightarrow $  co$S \notin \mathcal{NP}$                                                           (2)</li>
+<li>(1)+(2) $\Rightarrow$ $\mathcal{NPC} \nsubseteq \mathcal{NP \cap coNP}$ (+ $\mathcal{P} \subseteq \mathcal{NP\cap coNP}$) $\Rightarrow $  $\mathcal{NPC \nsubseteq P}$</li>
+<li>$\mathcal{NPC \nsubseteq P} \Rightarrow \mathcal{P \ne NP}$. Obviously,　$\mathcal{NPC \nsubseteq P} \Leftarrow \mathcal{P \ne NP}$ </li>
+<li>That is, $\mathcal{NP \ne coNP \iff P \ne NP}$ </li>
+</ul>
+</li>
+<li><a href="https://runzhizeng.github.io/2018/04/24/NP%E4%B8%8EcoNP/">A misunderstanding of $NTM,\mathcal{NP}$ and $\mathcal{coNP}$</a></li>
+</ul>
+</li>
 </ul>
 
-        
-      </div>
-      
-      
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/计算理论/" rel="tag"># 计算理论</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/24/NP与coNP/" rel="next" title="一个错误的NP=coNP证明：非确定性图灵机的输出取反">
+                <i class="fa fa-chevron-left"></i> 一个错误的NP=coNP证明：非确定性图灵机的输出取反
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -409,7 +600,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#个人信息"><span class="nav-number">1.</span> <span class="nav-text">个人信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#博客定位"><span class="nav-number">2.</span> <span class="nav-text">博客定位</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Two-formulations-of-P-vs-NP-question"><span class="nav-number">1.</span> <span class="nav-text">Two formulations of P-vs-NP question</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reductions"><span class="nav-number">2.</span> <span class="nav-text">Reductions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NP-Completeness"><span class="nav-number">3.</span> <span class="nav-text">NP-Completeness</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Three-Relatively-Advanced-Topics"><span class="nav-number">4.</span> <span class="nav-text">Three Relatively Advanced Topics</span></a></li></ol></div>
             
 
           </div>
