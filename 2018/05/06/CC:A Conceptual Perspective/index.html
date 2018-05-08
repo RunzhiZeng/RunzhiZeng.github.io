@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="润智的博客">
 <meta property="og:description" content="Two formulations of P-vs-NP question Search problem vs Decision problem: definition and relation two classes of Search problem: $\mathcal{PC}$ and $\mathcal{PF}$, “Easy to find solutions” vs “Easy to">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-07T09:16:22.361Z">
+<meta property="og:updated_time" content="2018-05-08T01:57:57.345Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《CC:A Conceptual Perspective》Some notes of Chapter2">
 <meta name="twitter:description" content="Two formulations of P-vs-NP question Search problem vs Decision problem: definition and relation two classes of Search problem: $\mathcal{PC}$ and $\mathcal{PF}$, “Easy to find solutions” vs “Easy to">
@@ -400,13 +400,11 @@
 </li>
 <li>co$\mathcal{NP}$:<ul>
 <li>co$\mathcal{C}= \{\{0,1\}^* \text{\ } S: S \in \mathcal{C} \}$<ul>
-<li>$\mathcal{NP \ne coNP} \Rightarrow \exists$ set in $\mathcal{NP}$ can’t be reduced to $\mathcal{NP} \cap \mathcal{coNP} $                         (1)</li>
-<li>$\mathcal{NP \ne coNP} $ and $S \in \mathcal{NPC}$  $\Rightarrow $  co$S \notin \mathcal{NP}$                                                           (2)</li>
-<li>(1)+(2) $\Rightarrow$ $\mathcal{NPC} \nsubseteq \mathcal{NP \cap coNP}$ (+ $\mathcal{P} \subseteq \mathcal{NP\cap coNP}$) $\Rightarrow $  $\mathcal{NPC \nsubseteq P}$</li>
-<li>$\mathcal{NPC \nsubseteq P} \Rightarrow \mathcal{P \ne NP}$. Obviously,　$\mathcal{NPC \nsubseteq P} \Leftarrow \mathcal{P \ne NP}$ </li>
-<li>That is, $\mathcal{NP \ne coNP \iff P \ne NP}$ </li>
+<li>$\mathcal{NP \ne coNP}$ and set $S\in \mathcal{NP}$ that every set in $\mathcal{NP}$ is <em>Karp-reducible</em> to $S$.  $\Rightarrow$  co$S \notin \mathcal{NP}$.          </li>
+<li>$\forall S \in \mathcal{NP}$ can be <em>Cook-reduced</em> to some set in $\mathcal{NP \cap coNP}$, then $\mathcal{NP=coNP}$</li>
 </ul>
 </li>
+<li>$\mathcal{P =NP \Rightarrow NP = coNP} $ but $\mathcal{P\ne NP \nRightarrow NP \ne coNP}$</li>
 <li><a href="https://runzhizeng.github.io/2018/04/24/NP%E4%B8%8EcoNP/">A misunderstanding of $NTM,\mathcal{NP}$ and $\mathcal{coNP}$</a></li>
 </ul>
 </li>
